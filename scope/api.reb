@@ -122,6 +122,7 @@ extend-agent-iso: func [root [object!] label [string!] /local iso-label imap pro
     iso-label: to-word rejoin ["agent-" label]
     imap: copy any [root/isolate-map make map! []]
     put imap 'tools iso-label
+    put imap 'shell iso-label
     put imap 'agent-loop iso-label
     props: make map! []
     put props 'isolate-map imap
@@ -153,6 +154,7 @@ create-agent-handle: func [
 ]
 
 release-agent-handle: func [ah [map!]] [
-    ah/ctx/fiber/dispose/dispose
+    try [ah/driver/ctx/fiber/dispose/dispose]
+    try [ah/tools/ctx/fiber/dispose/dispose]
     none
 ]

@@ -46,13 +46,37 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             sessions/append-event session-id ev-type payload /dispatch-ctx ctx
         ]
 
-        run-turn: func [session-id [string!] user-text [string!] /local step reply result status last-text p call-id te] [
+        agent-active?: func [] [
+            all [
+                object? ctx
+                object? ctx/fiber
+                not none? ctx/fiber/uid
+            ]
+        ]
+
+        disposed-turn-result: func [] [
+            te: make map! []
+            put te 'status 'disposed
+            put te 'steps 0
+            put te 'text ""
+            te
+        ]
+
+        run-turn: func [session-id [string!] user-text [string!] /local step reply result status last-text p call-id te cancelled] [
+            unless agent-active? [
+                return disposed-turn-result
+            ]
             log-event session-id 'turn-start make map! []
             log-event session-id 'user-message payload-text user-text
             step: 0
             status: 'text
             last-text: ""
             forever [
+                unless agent-active? [
+                    status: 'cancelled
+                    cancelled: true
+                    break
+                ]
                 step: step + 1
                 if step > max-steps [
                     status: 'max-steps
@@ -89,7 +113,7 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 log-event session-id 'step-end p
             ]
             te: make map! []
-            put te 'status status
+            put te 'status either [cancelled 'cancelled] [status]
             put te 'steps step
             put te 'text last-text
             log-event session-id 'turn-end te

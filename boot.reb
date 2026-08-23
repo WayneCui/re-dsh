@@ -11,6 +11,7 @@ do %tools/api.reb
 do %llm/api.reb
 do %shell/api.reb
 do %agent-loop/api.reb
+do %agent/api.reb
 
 attach-scheduler: func [ctx [object!] /local scope] [
     scope: ctx-runtime-scope ctx
@@ -18,19 +19,26 @@ attach-scheduler: func [ctx [object!] /local scope] [
     scope/scheduler
 ]
 
-shutdown-spine: func [handle [map!] /local default-ctx root-ctx] [
-    default-ctx: handle/agent-ctx
+shutdown-spine: func [handle [map!] /local agents root-ctx live ah] [
     root-ctx: handle/ctx
-    default-ctx/fiber/dispose/dispose
-    root-ctx/fiber/dispose/dispose
+    agents: handle/agents
+    if object? agents [
+        live: agents/list
+        foreach ah live [
+            agents/dispose ah
+        ]
+    ]
+    if object? root-ctx [
+        root-ctx/fiber/dispose/dispose
+    ]
     none
 ]
 
 spawn-agent: func [handle [map!] label [string!] /parent parent-key [object! none!]] [
     either parent [
-        create-agent-handle/parent handle/root-ctx label parent-key
+        handle/agents/create/parent label parent-key
     ][
-        create-agent-handle handle/root-ctx label
+        handle/agents/create label
     ]
 ]
 
@@ -42,13 +50,17 @@ boot-spine: func [/llm-config llm-map [map! none!] /local root boot-default hand
     root/registry/plugin approval-plugin none root
     llm-cfg: any [llm-map make map! []]
     root/registry/plugin llm-plugin llm-cfg root
+    root/registry/plugin agent-plugin none root
     boot-default: create-agent-handle root "default"
     default-ctx: boot-default/ctx
+    agents-svc: root/reflect/get 'agents true root
+    agents-svc/register boot-default
     handle: make map! []
     put handle 'ctx root
     put handle 'root-ctx root
     put handle 'default-agent boot-default
     put handle 'agent-ctx default-ctx
+    put handle 'agents agents-svc
     put handle 'host root/reflect/get 'host true root
     put handle 'sessions root/reflect/get 'sessions true root
     put handle 'approval root/reflect/get 'approval true root
