@@ -13,5 +13,5 @@ assert equal? "spine-bash^/" select r 'stdout "bash stdout"
 missing: spine/tools/execute 'bash make map! []
 assert equal? false select missing 'ok "bash missing command"
 
-spine/dispose
+shutdown-spine spine
 finish-tests "shell-test"

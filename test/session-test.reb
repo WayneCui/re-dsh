@@ -98,5 +98,5 @@ ev-ok: spine/sessions/append-event s5/id 'user-message make map! [text: "still c
 assert map? ev-ok "append commits despite observer throw"
 obs-disp/dispose
 
-spine/dispose
+shutdown-spine spine
 finish-tests "session-test"

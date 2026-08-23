@@ -51,6 +51,10 @@ make-tools-service: func [ctx [object!] /local svc] [
             thenable-wait value scheduler-of
         ]
 
+        scope-carrier: func [] [
+            make-scope-target scope-of ctx
+        ]
+
         register: func [spec [object!] /local n ex dobj inner] [
             n: spec/name
             put registry n spec
@@ -79,13 +83,14 @@ make-tools-service: func [ctx [object!] /local svc] [
             specs
         ]
 
-        emit-result: func [exec [map!] result [map!]] [
+        emit-result: func [exec [map!] result [map!] /local carrier] [
             append result-log reduce [exec result]
-            ctx/events/emit 'tools-result reduce [exec result] none
+            carrier: scope-carrier
+            ctx/events/emit 'tools-result reduce [exec result] carrier
             none
         ]
 
-        execute: func [tool-name [word!] args /local spec exec pre-inner exec-inner post-inner pre-out body-out final] [
+        execute: func [tool-name [word!] args /local spec exec pre-inner exec-inner post-inner pre-out body-out final carrier] [
             spec: select registry tool-name
             unless spec [
                 exec: make map! []
@@ -100,6 +105,8 @@ make-tools-service: func [ctx [object!] /local svc] [
             put exec 'name tool-name
             put exec 'args args
 
+            carrier: scope-carrier
+
             pre-inner: make object! [
                 call: func [arg-block [block!] this-arg [object! none!] /local m] [
                     m: make map! []
@@ -107,7 +114,7 @@ make-tools-service: func [ctx [object!] /local svc] [
                     m
                 ]
             ]
-            pre-out: settle ctx/events/waterfall 'tools-pre-execute reduce [exec] pre-inner none
+            pre-out: settle ctx/events/waterfall 'tools-pre-execute reduce [exec] pre-inner carrier
             if pre-denied? pre-out [
                 final: tool-result-deny exec pre-deny-reason pre-out
                 emit-result exec final
@@ -121,14 +128,14 @@ make-tools-service: func [ctx [object!] /local svc] [
                     spec-ref/run/call args-ref
                 ]
             ]
-            body-out: settle ctx/events/waterfall 'tools-execute reduce [exec] exec-inner none
+            body-out: settle ctx/events/waterfall 'tools-execute reduce [exec] exec-inner carrier
 
             post-inner: make object! [
                 call: func [arg-block [block!] this-arg [object! none!]] [
                     arg-block/2
                 ]
             ]
-            final: settle ctx/events/waterfall 'tools-post-execute reduce [exec body-out] post-inner none
+            final: settle ctx/events/waterfall 'tools-post-execute reduce [exec body-out] post-inner carrier
             if map? final [
                 if any [select final 'text select final 'stdout] [
                     unless select final 'name [put final 'name tool-name]

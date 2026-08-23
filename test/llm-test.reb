@@ -18,5 +18,5 @@ spine/llm/enqueue queued
 got: spine/llm/complete copy [] copy []
 assert same? queued got "enqueue returns queued reply first"
 
-spine/dispose
+shutdown-spine spine
 finish-tests "llm-test"

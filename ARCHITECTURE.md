@@ -7,6 +7,7 @@
 
 ```
 cordis-port (kernel)
+  -> scope         per-agent opaque key + event filter carrier
   -> host          真实 I/O 出口（shell / 可选 http / delay）
   -> session       追加事件日志（硬化 payload）+ replay；derive-messages 是视图
   -> tools         注册表 + pre/execute/post waterfall + tools-result emit
@@ -20,6 +21,7 @@ boot 只做装配，不含业务。
 
 | 切片 | 单一职责 | 不做什么 |
 |------|----------|----------|
+| scope | mint/bind scope key，`make-scope-target` 路由 | 不持有 session/tools |
 | host | 把 shell/http/delay 留在内核之外 | 不解释工具、不写 session |
 | session | 追加事件并投影模型可见消息 | 不跑模型、不执行工具 |
 | tools | 登记工具并通过 waterfall 调用 | 不拥有 bash 实现、不写日志 |
@@ -31,7 +33,8 @@ boot 只做装配，不含业务。
 
 - 模型可见内容必须能从 session 事件重建（derive-messages 只读日志）。
 - 工具副作用只发生在 `tools-execute` waterfall 的 inner，或经 host 出口；pre/post 可拒绝或改写结果。
-- 每个 agent 的 tools 用 `isolate 'tools` 隔开；session 与 llm 留在根上共享。
+- 每个 agent = `isolate 'tools` + scope key；session 与 llm 留在根上共享。
+- `tools-result` / `session-event` 按 scope 路由；父 scope 可收到子 agent 事件。
 - host 不 import 上层切片。
 
 ## 内核契约（cordis-port）

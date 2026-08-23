@@ -34,5 +34,5 @@ roles: copy []
 foreach m msgs2 [append roles select m 'role]
 assert equal? [user assistant tool assistant] roles "log: user, tool-call, result, assistant"
 
-spine/dispose
+shutdown-spine spine
 finish-tests "loop-test"

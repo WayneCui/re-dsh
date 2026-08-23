@@ -14,4 +14,4 @@ print "--- derived messages ---"
 foreach m spine/sessions/derive-messages s/id [
     print mold m
 ]
-spine/dispose
+shutdown-spine spine

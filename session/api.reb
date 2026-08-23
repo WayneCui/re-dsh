@@ -121,8 +121,14 @@ make-session-store: func [ctx [object!] /local store] [
         sessions: make map! []
         seq: 0
 
-        safe-emit: func [session [object!] ev [map!]] [
-            try [ctx/events/emit 'session-event reduce [session ev] none]
+        safe-emit: func [session [object!] ev [map!] carrier [object! none!]] [
+            try [
+                either object? carrier [
+                    ctx/events/emit 'session-event reduce [session ev] carrier
+                ][
+                    ctx/events/emit 'session-event reduce [session ev] none
+                ]
+            ]
             none
         ]
 
@@ -165,7 +171,13 @@ make-session-store: func [ctx [object!] /local store] [
             select sessions id
         ]
 
-        append-event: func [id [string!] ev-type [word!] payload [map!] /local s err snap ev] [
+        append-event: func [
+            id [string!]
+            ev-type [word!]
+            payload [map!]
+            /dispatch-ctx dc [object!]
+            /local s err snap ev carrier
+        ] [
             s: find-session id
             unless s [return none]
             err: validate-payload ev-type payload
@@ -173,7 +185,8 @@ make-session-store: func [ctx [object!] /local store] [
             snap: snapshot-json-map payload
             ev: make-event-record ev-type snap length? s/events
             append s/events ev
-            safe-emit s ev
+            carrier: if dispatch-ctx [make-scope-target scope-of dc][none]
+            safe-emit s ev carrier
             ev
         ]
 

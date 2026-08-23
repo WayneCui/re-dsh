@@ -2,10 +2,6 @@ REBOL []
 
 ; ============================================================
 ; agent-loop/api.reb
-;
-; inject [sessions tools llm]
-; Provides 'agent-loop with:
-;   run-turn session-id user-text -> map [status steps text]
 ; ============================================================
 
 payload-text: func [text /local p] [
@@ -46,9 +42,13 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             thenable-wait value scheduler-of
         ]
 
+        log-event: func [session-id [string!] ev-type [word!] payload [map!]] [
+            sessions/append-event session-id ev-type payload /dispatch-ctx ctx
+        ]
+
         run-turn: func [session-id [string!] user-text [string!] /local step reply result status last-text p call-id te] [
-            sessions/append-event session-id 'turn-start make map! []
-            sessions/append-event session-id 'user-message payload-text user-text
+            log-event session-id 'turn-start make map! []
+            log-event session-id 'user-message payload-text user-text
             step: 0
             status: 'text
             last-text: ""
@@ -60,36 +60,36 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 ]
                 p: make map! []
                 put p 'n step
-                sessions/append-event session-id 'step-start p
+                log-event session-id 'step-start p
                 reply: llm/complete sessions/derive-messages session-id tools/list
                 either equal? select reply 'kind 'tool-call [
                     call-id: rejoin ["c" step]
                     put reply 'call-id call-id
-                    sessions/append-event session-id 'tool-call reply
+                    log-event session-id 'tool-call reply
                     result: settle tools/execute select reply 'name select reply 'args
                     p: make map! []
                     put p 'name select reply 'name
                     put p 'call-id call-id
                     put p 'text form-tool-result result
-                    sessions/append-event session-id 'tool-result p
+                    log-event session-id 'tool-result p
                 ][
                     last-text: any [select reply 'text ""]
-                    sessions/append-event session-id 'assistant-message payload-text last-text
+                    log-event session-id 'assistant-message payload-text last-text
                     p: make map! []
                     put p 'n step
-                    sessions/append-event session-id 'step-end p
+                    log-event session-id 'step-end p
                     status: 'text
                     break
                 ]
                 p: make map! []
                 put p 'n step
-                sessions/append-event session-id 'step-end p
+                log-event session-id 'step-end p
             ]
             te: make map! []
             put te 'status status
             put te 'steps step
             put te 'text last-text
-            sessions/append-event session-id 'turn-end te
+            log-event session-id 'turn-end te
             copy te
         ]
     ]

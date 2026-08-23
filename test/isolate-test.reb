@@ -22,17 +22,17 @@ make-who: func [id [string!] /local spec] [
 ]
 
 spine: boot-spine
-iso-b: spine/ctx/isolate 'tools none
-iso-b/registry/plugin tools-plugin none iso-b
+agent-a: spawn-agent spine "A"
+agent-b: spawn-agent spine "B"
+agent-a/tools/register make-who "A"
+agent-b/tools/register make-who "B"
 
-spine/tools/register make-who "A"
-tools-b: iso-b/reflect/get 'tools true iso-b
-tools-b/register make-who "B"
-
-ra: spine/tools/execute 'whoami make map! []
-rb: tools-b/execute 'whoami make map! []
+ra: agent-a/tools/execute 'whoami make map! []
+rb: agent-b/tools/execute 'whoami make map! []
 assert equal? "A" select ra 'stdout "agent A whoami"
 assert equal? "B" select rb 'stdout "agent B whoami"
 
-spine/dispose
+release-agent-handle agent-a
+release-agent-handle agent-b
+shutdown-spine spine
 finish-tests "isolate-test"

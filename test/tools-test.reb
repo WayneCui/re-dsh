@@ -87,5 +87,5 @@ spine/tools/execute 'ping make map! []
 assert result-seen "tools-result emitted"
 result-disp/dispose
 
-spine/dispose
+shutdown-spine spine
 finish-tests "tools-test"
