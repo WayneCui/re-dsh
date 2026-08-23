@@ -52,6 +52,27 @@ make-host-service: func [ctx [object!] /local svc] [
             result
         ]
 
+        http-post: func [url [url! string!] body [string!] /local tmp cmd out err code result] [
+            tmp: to-file rejoin ["http-post-" random 999999 ".txt"]
+            write tmp body
+            cmd: rejoin ["curl -s -S -X POST --data-binary @" tmp " " mold url]
+            out: copy ""
+            err: copy ""
+            code: try [call/wait/shell/output/error cmd out err]
+            try [delete tmp]
+            result: make map! []
+            either error? code [
+                put result 'ok false
+                put result 'error form code
+            ][
+                put result 'ok equal? code 0
+                put result 'code code
+                put result 'body out
+                put result 'stderr err
+            ]
+            result
+        ]
+
         delay: func [ms [integer!] value /local sched] [
             sched: scheduler-of
             either object? sched [

@@ -4,4 +4,4 @@
 
 不做什么：不解释工具名、不写 session、不调用 LLM。
 
-不变量：`run-command` 走真实 `call/wait/shell`；`delay` 只推进确定性调度器，不睡墙钟。
+不变量：`run-command` 走真实 `call/wait/shell`；`http-post` 经 `curl`；`delay` 只推进确定性调度器。

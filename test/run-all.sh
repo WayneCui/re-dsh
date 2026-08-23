@@ -5,7 +5,7 @@ cd "$ROOT"
 fail=0
 ok=0
 for t in test/host-test.reb test/session-test.reb test/tools-test.reb \
-         test/llm-test.reb test/shell-test.reb test/loop-test.reb \
+         test/llm-test.reb test/llm-script-test.reb test/shell-test.reb test/loop-test.reb \
          test/isolate-test.reb test/scope-test.reb; do
   echo "######## $t ########"
   if r3 -s "$t"; then
