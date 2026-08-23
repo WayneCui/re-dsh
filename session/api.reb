@@ -17,6 +17,7 @@ session-event-types: [
     turn-start turn-end step-start step-end
     user-message assistant-message assistant-chunk
     tool-call tool-result session-end-seed
+    approval-asked approval-decided approval-policy
 ]
 
 session-error: func [msg [string!]] [
@@ -76,6 +77,37 @@ validate-payload: func [ev-type [word!] payload [map!]] [
         session-end-seed [
             unless integer? any [select payload 'count][
                 return "session-end-seed requires integer count"
+            ]
+        ]
+        approval-asked [
+            unless string? any [select payload 'id][
+                return "approval-asked requires string id"
+            ]
+            unless string? any [select payload 'tool-name][
+                return "approval-asked requires tool-name"
+            ]
+            cid: select payload 'call-id
+            unless any [none? cid string? cid][
+                return "approval-asked call-id must be string"
+            ]
+            r: select payload 'reason
+            unless any [none? r string? r][
+                return "approval-asked reason must be string"
+            ]
+        ]
+        approval-decided [
+            unless string? any [select payload 'id][
+                return "approval-decided requires string id"
+            ]
+            o: select payload 'outcome
+            unless any [word? o string? o][
+                return "approval-decided requires outcome"
+            ]
+        ]
+        approval-policy [
+            p: select payload 'policy
+            unless any [equal? p 'ask equal? p 'never][
+                return "approval-policy must be ask or never"
             ]
         ]
     ]

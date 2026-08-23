@@ -6,6 +6,7 @@ do %../cordis-port/logger.reb
 do %scope/api.reb
 do %host/api.reb
 do %session/api.reb
+do %approval/api.reb
 do %tools/api.reb
 do %llm/api.reb
 do %shell/api.reb
@@ -38,6 +39,7 @@ boot-spine: func [/llm-config llm-map [map! none!] /local root boot-default hand
     attach-scheduler root
     root/registry/plugin host-plugin none root
     root/registry/plugin session-plugin none root
+    root/registry/plugin approval-plugin none root
     llm-cfg: any [llm-map make map! []]
     root/registry/plugin llm-plugin llm-cfg root
     boot-default: create-agent-handle root "default"
@@ -49,6 +51,7 @@ boot-spine: func [/llm-config llm-map [map! none!] /local root boot-default hand
     put handle 'agent-ctx default-ctx
     put handle 'host root/reflect/get 'host true root
     put handle 'sessions root/reflect/get 'sessions true root
+    put handle 'approval root/reflect/get 'approval true root
     put handle 'llm root/reflect/get 'llm true root
     put handle 'tools boot-default/tools
     put handle 'driver boot-default/driver

@@ -10,6 +10,7 @@ cordis-port (kernel)
   -> scope         per-agent opaque key + event filter carrier
   -> host          真实 I/O 出口（shell / 可选 http / delay）
   -> session       追加事件日志（硬化 payload）+ replay；derive-messages 是视图
+  -> approval      一次性审批 seam；tools `ask` 决策路由
   -> tools         注册表 + pre/execute/post waterfall + tools-result emit
        -> shell    把 bash 登记到 tools，经 host 执行
   -> llm           complete(messages, tool-specs)；enqueue / script / http / echo
@@ -24,6 +25,7 @@ boot 只做装配，不含业务。
 | scope | mint/bind scope key，`make-scope-target` 路由 | 不持有 session/tools |
 | host | 把 shell/http/delay 留在内核之外 | 不解释工具、不写 session |
 | session | 追加事件并投影模型可见消息 | 不跑模型、不执行工具 |
+| approval | `request` / `approval-policy`；配对 audit 事件 | 无 grant store、无内置 UI |
 | tools | 登记工具并通过 waterfall 调用 | 不拥有 bash 实现、不写日志 |
 | llm | 给定消息和工具表，返回 text 或 tool-call | 不执行工具、不拥有 session |
 | shell | 作为 tools 上的一个 `bash` 规格 | 不直接被 loop 调用 |

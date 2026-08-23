@@ -66,7 +66,10 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                     call-id: rejoin ["c" step]
                     put reply 'call-id call-id
                     log-event session-id 'tool-call reply
-                    result: settle tools/execute select reply 'name select reply 'args
+                    meta: make map! []
+                    put meta 'session-id session-id
+                    put meta 'call-id call-id
+                    result: settle tools/execute/meta select reply 'name select reply 'args meta
                     p: make map! []
                     put p 'name select reply 'name
                     put p 'call-id call-id
