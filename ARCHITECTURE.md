@@ -9,7 +9,7 @@
 cordis-port (kernel)
   -> host          真实 I/O 出口（shell / 可选 http / delay）
   -> session       只追加的事件日志；derive-messages 是视图
-  -> tools         注册表 + tools-execute waterfall
+  -> tools         注册表 + pre/execute/post waterfall + tools-result emit
        -> shell    把 bash 登记到 tools，经 host 执行
   -> llm           complete(messages, tool-specs)；echo 或脚本
   -> agent-loop    一轮 turn：写日志、问模型、跑工具、再问
@@ -30,7 +30,7 @@ boot 只做装配，不含业务。
 ## 不变量
 
 - 模型可见内容必须能从 session 事件重建（derive-messages 只读日志）。
-- 工具副作用只发生在 `tools-execute` waterfall 的 inner，或经 host 出口。
+- 工具副作用只发生在 `tools-execute` waterfall 的 inner，或经 host 出口；pre/post 可拒绝或改写结果。
 - 每个 agent 的 tools 用 `isolate 'tools` 隔开；session 与 llm 留在根上共享。
 - host 不 import 上层切片。
 
