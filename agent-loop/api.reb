@@ -46,7 +46,7 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             thenable-wait value scheduler-of
         ]
 
-        run-turn: func [session-id [string!] user-text [string!] /local step reply result status last-text p] [
+        run-turn: func [session-id [string!] user-text [string!] /local step reply result status last-text p call-id te] [
             sessions/append-event session-id 'turn-start make map! []
             sessions/append-event session-id 'user-message payload-text user-text
             step: 0
@@ -63,10 +63,13 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 sessions/append-event session-id 'step-start p
                 reply: llm/complete sessions/derive-messages session-id tools/list
                 either equal? select reply 'kind 'tool-call [
+                    call-id: rejoin ["c" step]
+                    put reply 'call-id call-id
                     sessions/append-event session-id 'tool-call reply
                     result: settle tools/execute select reply 'name select reply 'args
                     p: make map! []
                     put p 'name select reply 'name
+                    put p 'call-id call-id
                     put p 'text form-tool-result result
                     sessions/append-event session-id 'tool-result p
                 ][
@@ -82,12 +85,12 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 put p 'n step
                 sessions/append-event session-id 'step-end p
             ]
-            sessions/append-event session-id 'turn-end make map! []
-            p: make map! []
-            put p 'status status
-            put p 'steps step
-            put p 'text last-text
-            p
+            te: make map! []
+            put te 'status status
+            put te 'steps step
+            put te 'text last-text
+            sessions/append-event session-id 'turn-end te
+            copy te
         ]
     ]
     loop/ctx: ctx

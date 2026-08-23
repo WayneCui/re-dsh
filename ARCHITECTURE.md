@@ -8,7 +8,7 @@
 ```
 cordis-port (kernel)
   -> host          真实 I/O 出口（shell / 可选 http / delay）
-  -> session       只追加的事件日志；derive-messages 是视图
+  -> session       追加事件日志（硬化 payload）+ replay；derive-messages 是视图
   -> tools         注册表 + pre/execute/post waterfall + tools-result emit
        -> shell    把 bash 登记到 tools，经 host 执行
   -> llm           complete(messages, tool-specs)；echo 或脚本
