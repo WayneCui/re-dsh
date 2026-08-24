@@ -4,4 +4,15 @@
 
 不做什么：不直接 spawn 进程、不实现模型、不解释 bash。
 
-不变量：每一步的模型输入来自 `derive-messages`；工具结果先入日志再进入下一步。
+## API
+
+| 方法 | 说明 |
+|------|------|
+| `run-turn session-id user-text` | 追加 user-message，再跑 turn |
+| `resume-turn session-id` | **不**追加 user-message；仅从 `derive-messages` 继续 |
+
+## 不变量
+
+- 每一步的模型输入只来自 `sessions/derive-messages`（无旁路缓存）。
+- 工具结果先入日志再进入下一步。
+- dispose 后 `run-turn` / `resume-turn` 返回 `status: disposed`。

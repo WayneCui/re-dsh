@@ -1,8 +1,8 @@
 # session
 
-职责：只追加的会话事件日志、payload 硬化（JSON 快照）、从 seed 回放、从日志投影模型可见消息；可选文件落盘。
+职责：只追加的会话事件日志、payload 硬化（JSON 快照）、从 seed 回放、fork 分支、从日志投影模型可见消息；可选文件落盘。
 
-不做什么：不调用 LLM、不执行工具、不做 fork/resume（4.2）、不做流式折叠策略以外的业务。
+不做什么：不调用 LLM、不执行工具、不做流式折叠策略以外的业务。
 
 ## API
 
@@ -10,6 +10,7 @@
 |------|------|
 | `create` | 空会话（有 backend 时写空文件） |
 | `create-from-log events` | 校验并回放事件块，设置 `live-index` |
+| `fork id` | 深拷贝前缀到新 id；`forked-from` 指向源；分支后互不影响 |
 | `open id` | 从 `store-dir` 加载到内存（保留 id）；无 backend 则报错 |
 | `save id` | 强制 flush 当前日志到磁盘 |
 | `append-event` | 校验 → 快照 → 提交 → emit → 若有 backend 则落盘 |
@@ -43,4 +44,5 @@ boot-spine/session-config make map! [store-dir %data/sessions]
 - append 只往尾部加；index 连续 0..n-1。
 - 调用方在 append 后改 payload 不影响已提交日志。
 - replay：`create-from-log` / `open` 后 `derive-messages` 与线上一致。
-- 有 backend 时，每次 append 后磁盘与内存一致。
+- fork：子会话与父在切点 derive 相同；之后各自 append 互不污染。
+- 有 backend 时，每次 append / fork 后磁盘与内存一致。

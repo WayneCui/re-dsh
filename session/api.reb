@@ -201,10 +201,12 @@ make-session-store: func [
             seq: seq + 1
             sid: rejoin ["s" seq]
             s: make object! [
-                id: sid
+                id: none
                 events: copy []
                 live-index: 0
+                forked-from: none
             ]
+            put s 'id sid
             put sessions sid s
             persist! s
             s
@@ -215,10 +217,12 @@ make-session-store: func [
             seq: seq + 1
             sid: rejoin ["s" seq]
             s: make object! [
-                id: sid
+                id: none
                 events: copy []
                 live-index: 0
+                forked-from: none
             ]
+            put s 'id sid
             i: 0
             foreach ev events [
                 snap: make-event-record
@@ -238,6 +242,39 @@ make-session-store: func [
             select sessions id
         ]
 
+        fork: func [
+            source-id [string!]
+            /local src sid s i ev snap
+        ] [
+            src: find-session source-id
+            unless object? src [
+                session-error rejoin ["fork: session not found: " source-id]
+            ]
+            seq: seq + 1
+            sid: rejoin ["s" seq]
+            s: make object! [
+                id: none
+                events: copy []
+                live-index: 0
+                forked-from: none
+            ]
+            put s 'id sid
+            put s 'forked-from source-id
+            i: 0
+            foreach ev src/events [
+                snap: make-event-record
+                    select ev 'type
+                    snapshot-json-map select ev 'payload
+                    i
+                append s/events snap
+                i: i + 1
+            ]
+            s/live-index: length? s/events
+            put sessions sid s
+            persist! s
+            s
+        ]
+
         open: func [session-id [string!] /local events s i ev snap] [
             s: find-session session-id
             if object? s [return s]
@@ -251,6 +288,7 @@ make-session-store: func [
                 id: none
                 events: copy []
                 live-index: 0
+                forked-from: none
             ]
             put s 'id session-id
             i: 0

@@ -62,15 +62,28 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             te
         ]
 
-        run-turn: func [session-id [string!] user-text [string!] /local step reply result status last-text p call-id te cancelled] [
+        ; Core turn body. /resume skips logging a new user-message and only
+        ; continues from sessions/derive-messages (no side-channel cache).
+        run-turn-core: func [
+            session-id [string!]
+            /user user-text [string!]
+            /resume
+            /local step reply result status last-text p call-id te cancelled meta
+        ] [
             unless agent-active? [
                 return disposed-turn-result
             ]
+            unless find-session? session-id [
+                session-error rejoin ["run-turn: session not found: " session-id]
+            ]
             log-event session-id 'turn-start make map! []
-            log-event session-id 'user-message payload-text user-text
+            unless resume [
+                log-event session-id 'user-message payload-text any [user-text ""]
+            ]
             step: 0
             status: 'text
             last-text: ""
+            cancelled: false
             forever [
                 unless agent-active? [
                     status: 'cancelled
@@ -85,6 +98,7 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 p: make map! []
                 put p 'n step
                 log-event session-id 'step-start p
+                ; Always rebuild model input from the event log.
                 reply: llm/complete sessions/derive-messages session-id tools/list
                 either equal? select reply 'kind 'tool-call [
                     call-id: rejoin ["c" step]
@@ -113,11 +127,23 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 log-event session-id 'step-end p
             ]
             te: make map! []
-            put te 'status either [cancelled 'cancelled] [status]
+            put te 'status either cancelled ['cancelled][status]
             put te 'steps step
             put te 'text last-text
             log-event session-id 'turn-end te
             copy te
+        ]
+
+        find-session?: func [session-id [string!]] [
+            object? sessions/find-session session-id
+        ]
+
+        run-turn: func [session-id [string!] user-text [string!]] [
+            run-turn-core/user session-id user-text
+        ]
+
+        resume-turn: func [session-id [string!]] [
+            run-turn-core/resume session-id
         ]
     ]
     loop/ctx: ctx
