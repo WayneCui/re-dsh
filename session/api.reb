@@ -20,6 +20,7 @@ session-event-types: [
     user-message assistant-message assistant-chunk
     tool-call tool-result session-end-seed
     approval-asked approval-decided approval-policy
+    inbox-claimed
 ]
 
 session-error: func [msg [string!]] [
@@ -79,6 +80,15 @@ validate-payload: func [ev-type [word!] payload [map!]] [
         session-end-seed [
             unless integer? any [select payload 'count][
                 return "session-end-seed requires integer count"
+            ]
+        ]
+        inbox-claimed [
+            k: select payload 'kind
+            unless any [word? k string? k][
+                return "inbox-claimed requires kind"
+            ]
+            unless string? any [select payload 'text][
+                return "inbox-claimed text must be string"
             ]
         ]
         approval-asked [

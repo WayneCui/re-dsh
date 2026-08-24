@@ -46,6 +46,63 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
         max-steps: 8
         cancel-requested: false
         live-session-id: none
+        inbox-next-turn: copy []
+        inbox-next-step: copy []
+
+        ; ---- inbox: next-turn (followup, waking) / next-step (steer waking, inject non-waking) ----
+        followup: func [text [string!] /local msg] [
+            msg: make map! []
+            put msg 'kind 'followup
+            put msg 'text text
+            append inbox-next-turn msg
+            none
+        ]
+
+        steer: func [text [string!] /local msg] [
+            msg: make map! []
+            put msg 'kind 'steer
+            put msg 'text text
+            append inbox-next-step msg
+            none
+        ]
+
+        inject: func [text [string!] /local msg] [
+            msg: make map! []
+            put msg 'kind 'inject
+            put msg 'text text
+            append inbox-next-step msg
+            none
+        ]
+
+        inbox-empty?: func [] [
+            all [empty? inbox-next-turn  empty? inbox-next-step]
+        ]
+
+        ; Claim one turn boundary batch: one next-turn, then all next-step.
+        claim-next-turn: func [/local out] [
+            out: copy []
+            unless empty? inbox-next-turn [
+                append out take inbox-next-turn
+            ]
+            append out inbox-next-step
+            inbox-next-step: copy []
+            out
+        ]
+
+        ; Claim next-step batch only (between steps).
+        claim-next-step: func [/local out] [
+            out: copy inbox-next-step
+            inbox-next-step: copy []
+            out
+        ]
+
+        ; Claimed messages become durable user-message rows (model-visible).
+        log-inbox-claimed: func [session-id [string!] msgs [block!] /local m] [
+            foreach m msgs [
+                log-event session-id 'user-message payload-text select m 'text
+            ]
+            none
+        ]
 
         scheduler-of: func [/local scope] [
             scope: ctx-runtime-scope ctx
@@ -113,6 +170,17 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             te
         ]
 
+        ; Resume is meaningful when the log ends with tool result or assistant text.
+        ; Inbox followup/steer also admits a turn: claimed messages will become user-message rows.
+        can-admit-turn?: func [session-id [string!] claimed [block!]] [
+            if continuation-kind session-id [return true]
+            foreach m claimed [
+                if equal? select m 'kind 'followup [return true]
+                if equal? select m 'kind 'steer [return true]
+            ]
+            false
+        ]
+
         no-input-turn-result: func [session-id [string!] /local te] [
             te: make map! []
             put te 'status 'no-input
@@ -172,6 +240,12 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             live-session-id: session-id
             cancel-requested: false
             log-event session-id 'turn-start make map! []
+            ; Claim inbox: at turn start take one next-turn message + all next-step (steer/inject).
+            ; For /user, caller text already logged; inbox still claims steer/inject context.
+            claimed: claim-next-turn
+            unless empty? claimed [
+                log-inbox-claimed session-id claimed
+            ]
             unless resume [
                 log-event session-id 'user-message payload-text any [user-text ""]
             ]
@@ -179,8 +253,8 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 return finish-turn session-id 'cancelled 0 ""
             ]
             ; Resume is meaningful when the log ends with tool result or assistant text;
-            ; only a missing/unusable last message means no-input.
-            if all [resume not continuation-kind session-id] [
+            ; inbox followup/steer also admits a turn. Only missing input means no-input.
+            if all [resume not can-admit-turn? session-id claimed] [
                 return no-input-turn-result session-id
             ]
             step: 0
@@ -202,6 +276,11 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 if turn-cancelled? [
                     status: 'cancelled
                     break
+                ]
+                ; Between steps, claim any next-step inbox (steer/inject) as user messages.
+                claimed-step: claim-next-step
+                unless empty? claimed-step [
+                    log-inbox-claimed session-id claimed-step
                 ]
                 ; Always rebuild model input from the event log (stream ? chunks + final).
                 sink: make object! [
@@ -274,8 +353,15 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             finish-turn session-id status step last-text
         ]
 
-        run-turn: func [session-id [string!] user-text [string!]] [
-            run-turn-core/user session-id user-text
+        run-turn: func [session-id [string!] user-text [string! none!]] [
+            either none? user-text [
+                if inbox-empty? [
+                    return no-input-turn-result session-id
+                ]
+                run-turn-core/resume session-id
+            ][
+                run-turn-core/user session-id user-text
+            ]
         ]
 
         resume-turn: func [session-id [string!]] [

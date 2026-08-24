@@ -8,6 +8,7 @@
 bash test/run-all.sh
 r3 -s examples/echo-turn.reb
 r3 -s examples/multi-step-turn.reb
+r3 -s examples/inbox-turn.reb
 r3 -s examples/full-chain.reb
 r3 -s examples/profile-boot.reb
 r3 -s boot-yaml.reb --dump-config

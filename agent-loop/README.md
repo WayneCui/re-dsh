@@ -8,9 +8,12 @@
 
 | 方法 | 说明 |
 |------|------|
-| `run-turn session-id user-text` | 追加 user-message，再跑 turn |
-| `resume-turn session-id` | **不**追加 user-message；从 `derive-messages` 续跑（日志以 tool 或 assistant 结尾时可续；空日志返回 `status: no-input`） |
+| `run-turn session-id user-text` | 追加 user-message，再跑 turn；`user-text: none` 且 inbox 非空时从 inbox 驱动 |
+| `resume-turn session-id` | **不**追加 user-message；从 `derive-messages` 续跑（日志以 tool 或 assistant 结尾时可续；空日志且 inbox 无 waking 输入时返回 `status: no-input`） |
 | `cancel-turn` | 请求取消当前 live turn；idle 时返回 `none` 且不粘滞标志 |
+| `followup text` | 入队 next-turn（waking）；下次 turn 边界成为 user-message |
+| `steer text` | 入队 next-step（waking）；turn 内 step 边界成为 user-message |
+| `inject text` | 入队 next-step（非 waking）；有 followup/steer 时一起被 claim |
 
 ## 不变量
 
