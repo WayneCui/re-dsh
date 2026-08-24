@@ -17,3 +17,10 @@ finish-tests: func [suite [string!]] [
     print rejoin ["^/==== " suite ": " passed " passed, " failed " failed ===="]
     if failed > 0 [quit 1]
 ]
+
+capture-output: func [block [block!] /local out] [
+    out: copy ""
+    ; TODO: no shell redirect in-process; rely on direct probe instead
+    do block
+    out
+]

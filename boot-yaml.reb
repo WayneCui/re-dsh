@@ -116,10 +116,45 @@ boot-spine-from-config: func [
     root: make-context
     attach-scheduler root
     plugin-map: make-spine-plugin-map
-    mount-entry-list root entries plugin-map
+    isolated-ctxs: make map! []
+    mount-entry-list-with-isolate: func [
+        ctx [object!]
+        entries [block!]
+        plugin-map [map!]
+        /local item plugin plugin-name cfg sub target
+    ] [
+        foreach item entries [
+            if entry-disabled? item [continue]
+            if entry-group? item [
+                sub: entry-config-of item
+                if block? sub [mount-entry-list-with-isolate ctx sub plugin-map]
+                continue
+            ]
+            plugin-name: entry-plugin-name item
+            plugin: select plugin-map plugin-name
+            unless object? plugin [
+                loader-error rejoin ["unknown plugin: " mold plugin-name]
+            ]
+            cfg: entry-config-of item
+            target: entry-mount-ctx ctx item
+            if not same? target ctx [
+                put isolated-ctxs plugin-name target
+            ]
+            target/registry/plugin plugin any [cfg none] target
+        ]
+        none
+    ]
+    mount-entry-list-with-isolate root entries plugin-map
     boot-default: create-agent-handle root "default"
     default-ctx: boot-default/ctx
     agents-svc: root/reflect/get 'agents true root
+    unless object? agents-svc [
+        ; YAML isolate may register agents under a label; fall back to the isolated ctx.
+        iso: select isolated-ctxs 'agents
+        if object? iso [
+            agents-svc: iso/reflect/get 'agents true iso
+        ]
+    ]
     agents-svc/register boot-default
     handle: make map! []
     put handle 'ctx root

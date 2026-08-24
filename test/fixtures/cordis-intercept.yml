@@ -1,0 +1,16 @@
+- id: host
+  name: host
+
+- id: sessions
+  name: session
+
+- id: approval
+  name: approval
+
+- id: llm
+  name: llm
+
+- id: agents
+  name: agents
+  intercept:
+    logger: debug
