@@ -44,5 +44,6 @@ boot-spine/session-config make map! [store-dir %data/sessions]
 - append 只往尾部加；index 连续 0..n-1。
 - 调用方在 append 后改 payload 不影响已提交日志。
 - replay：`create-from-log` / `open` 后 `derive-messages` 与线上一致。
+- `derive-messages` 只读投影，不改日志；连续 `assistant-chunk` 折叠为一条 assistant；若后接 `assistant-message` 则以 message 为准（丢弃 chunk 缓冲）。
 - fork：子会话与父在切点 derive 相同；之后各自 append 互不污染。
 - 有 backend 时，每次 append / fork 后磁盘与内存一致。

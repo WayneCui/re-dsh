@@ -15,6 +15,7 @@
 ## 不变量
 
 - 每一步的模型输入只来自 `sessions/derive-messages`（无旁路缓存）。
+- 文本步走 `llm/stream`：先写 `assistant-chunk`，再写最终 `assistant-message`；derive 与非流式一致。
 - 工具结果先入日志再进入下一步。
 - dispose 后 `run-turn` / `resume-turn` 返回 `status: disposed`。
 - `cancel-turn` 合作式：每步 / settle 每 tick 检查；取消后写 `cancelled` tool-result 与 `turn-end status: cancelled`，并清标志。

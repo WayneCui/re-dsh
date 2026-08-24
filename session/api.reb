@@ -347,25 +347,51 @@ make-session-store: func [
             copy/deep s/events
         ]
 
-        derive-messages: func [id [string!] /local s msgs ev p m] [
+        derive-messages: func [id [string!] /local s msgs ev p m chunk-buf] [
             s: find-session id
             unless s [return copy []]
             msgs: copy []
+            chunk-buf: none
             foreach ev s/events [
                 p: select ev 'payload
                 m: none
                 switch select ev 'type [
                     user-message [
+                        if string? chunk-buf [
+                            m: make map! []
+                            put m 'role 'assistant
+                            put m 'content chunk-buf
+                            append msgs m
+                            chunk-buf: none
+                            m: none
+                        ]
                         m: make map! []
                         put m 'role 'user
                         put m 'content any [select p 'text ""]
                     ]
+                    assistant-chunk [
+                        either string? chunk-buf [
+                            chunk-buf: rejoin [chunk-buf any [select p 'text ""]]
+                        ][
+                            chunk-buf: copy any [select p 'text ""]
+                        ]
+                    ]
                     assistant-message [
+                        ; Final message supersedes any preceding chunks.
+                        chunk-buf: none
                         m: make map! []
                         put m 'role 'assistant
                         put m 'content any [select p 'text ""]
                     ]
                     tool-call [
+                        if string? chunk-buf [
+                            m: make map! []
+                            put m 'role 'assistant
+                            put m 'content chunk-buf
+                            append msgs m
+                            chunk-buf: none
+                            m: none
+                        ]
                         m: make map! []
                         put m 'role 'assistant
                         put m 'kind 'tool-call
@@ -374,6 +400,14 @@ make-session-store: func [
                         either cid: select p 'call-id [put m 'call-id cid][]
                     ]
                     tool-result [
+                        if string? chunk-buf [
+                            m: make map! []
+                            put m 'role 'assistant
+                            put m 'content chunk-buf
+                            append msgs m
+                            chunk-buf: none
+                            m: none
+                        ]
                         m: make map! []
                         put m 'role 'tool
                         put m 'name select p 'name
@@ -382,6 +416,12 @@ make-session-store: func [
                     ]
                 ]
                 if m [append msgs m]
+            ]
+            if string? chunk-buf [
+                m: make map! []
+                put m 'role 'assistant
+                put m 'content chunk-buf
+                append msgs m
             ]
             msgs
         ]

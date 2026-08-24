@@ -4,10 +4,9 @@ REBOL []
 ; llm/api.reb
 ;
 ; Provides ctx service 'llm:
-;   complete messages [block!] tool-specs [block!] -> map
-;     text:      kind: 'text  text: string!
-;     tool-call: kind: 'tool-call  name: word!  args: map!
-;   enqueue reply [map!]  — scripted adapter (tests)
+;   complete messages tool-specs -> map (text | tool-call)
+;   stream/on-chunk messages tool-specs sink -> map (emits text deltas, same reply)
+;   enqueue reply — scripted adapter (tests; optional chunks block)
 ;
 ; Production adapters (plugin config map):
 ;   script: path to r3 script — reads request file, prints reply mold
@@ -38,10 +37,10 @@ make-llm-service: func [
             reply
         ]
 
-        complete: func [messages [block!] tool-specs [block!] /local reply ext] [
+        ; Resolve next reply (enqueue > script > http > echo). Shared by complete/stream.
+        resolve-reply: func [messages [block!] tool-specs [block!] /local reply ext] [
             unless empty? queue [
-                reply: take queue
-                return reply
+                return take queue
             ]
             unless none? script-path [
                 ext: run-llm-script host-ref script-path messages tool-specs
@@ -54,6 +53,34 @@ make-llm-service: func [
             reply: make map! []
             put reply 'kind 'text
             put reply 'text last-user-content messages
+            reply
+        ]
+
+        complete: func [messages [block!] tool-specs [block!]] [
+            resolve-reply messages tool-specs
+        ]
+
+        ; Emit text deltas via sink/call, then return the same reply as complete.
+        ; Optional reply/chunks [string!...] for scripted multi-chunk tests.
+        ; Without chunks, a text reply emits one chunk with the full text.
+        stream: func [
+            messages [block!]
+            tool-specs [block!]
+            /on-chunk sink
+            /local reply chunks c text
+        ] [
+            reply: resolve-reply messages tool-specs
+            if all [object? sink  equal? select reply 'kind 'text] [
+                chunks: select reply 'chunks
+                either all [block? chunks  not empty? chunks] [
+                    foreach c chunks [
+                        if string? c [sink/call c]
+                    ]
+                ][
+                    text: any [select reply 'text ""]
+                    sink/call text
+                ]
+            ]
             reply
         ]
     ]

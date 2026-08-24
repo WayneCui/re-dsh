@@ -140,7 +140,7 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             session-id [string!]
             /user user-text [string!]
             /resume
-            /local step reply result status last-text p call-id meta tool-name cc
+            /local step reply result status last-text p call-id meta tool-name cc sink
         ] [
             unless agent-active? [
                 return disposed-turn-result
@@ -177,8 +177,21 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                     status: 'cancelled
                     break
                 ]
-                ; Always rebuild model input from the event log.
-                reply: llm/complete sessions/derive-messages session-id tools/list
+                ; Always rebuild model input from the event log (stream ? chunks + final).
+                sink: make object! [
+                    loop-ref: none
+                    sid: none
+                    call: func [text [string!] /local cp] [
+                        if loop-ref/turn-cancelled? [return none]
+                        cp: make map! []
+                        put cp 'text text
+                        loop-ref/log-event sid 'assistant-chunk cp
+                        none
+                    ]
+                ]
+                sink/loop-ref: self
+                sink/sid: session-id
+                reply: llm/stream/on-chunk sessions/derive-messages session-id tools/list sink
                 if turn-cancelled? [
                     status: 'cancelled
                     break
