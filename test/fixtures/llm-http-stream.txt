@@ -1,0 +1,3 @@
+#(map! [     delta: "hel" ])
+#(map! [     delta: "lo" ])
+#(map! [     kind: text     text: "hello" ])

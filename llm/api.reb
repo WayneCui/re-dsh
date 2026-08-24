@@ -5,23 +5,48 @@ REBOL []
 ;
 ; Provides ctx service 'llm:
 ;   complete messages tool-specs -> map (text | tool-call)
-;   stream/on-chunk messages tool-specs sink -> map (emits text deltas, same reply)
+;   stream/on-chunk/cancel messages tool-specs sink cancel-obj -> map
 ;   enqueue reply — scripted adapter (tests; optional chunks block)
 ;
 ; Production adapters (plugin config map):
-;   script: path to r3 script — reads request file, prints reply mold
-;   http-url: POST mold body, parse mold response
+;   script: path to r3 script
+;   http-url: url! | file! fixture — POST mold body; stream uses line protocol
 ; ============================================================
 
 do %reply.reb
 do %script.reb
 do %http.reb
 
+llm-cancelled?: func [cancel-obj] [
+    all [object? cancel-obj  cancel-obj/call]
+]
+
+emit-text-chunks: func [
+    reply [map!]
+    sink
+    cancel-obj
+    /local chunks c text
+] [
+    unless all [object? sink  equal? select reply 'kind 'text] [return none]
+    chunks: select reply 'chunks
+    either all [block? chunks  not empty? chunks] [
+        foreach c chunks [
+            if llm-cancelled? cancel-obj [return 'cancelled]
+            if string? c [sink/call c]
+        ]
+    ][
+        if llm-cancelled? cancel-obj [return 'cancelled]
+        text: any [select reply 'text ""]
+        sink/call text
+    ]
+    either llm-cancelled? cancel-obj ['cancelled]['ok]
+]
+
 make-llm-service: func [
     ctx [object!]
     /host host-svc [object! none!]
     /script script-path [file! string! none!]
-    /http-url url [url! string! none!]
+    /http-url url [url! string! file! none!]
     /local svc
 ] [
     svc: make object! [
@@ -37,7 +62,6 @@ make-llm-service: func [
             reply
         ]
 
-        ; Resolve next reply (enqueue > script > http > echo). Shared by complete/stream.
         resolve-reply: func [messages [block!] tool-specs [block!] /local reply ext] [
             unless empty? queue [
                 return take queue
@@ -60,26 +84,25 @@ make-llm-service: func [
             resolve-reply messages tool-specs
         ]
 
-        ; Emit text deltas via sink/call, then return the same reply as complete.
-        ; Optional reply/chunks [string!...] for scripted multi-chunk tests.
-        ; Without chunks, a text reply emits one chunk with the full text.
         stream: func [
             messages [block!]
             tool-specs [block!]
             /on-chunk sink
-            /local reply chunks c text
+            /cancel cancel-obj
+            /local reply st
         ] [
-            reply: resolve-reply messages tool-specs
-            if all [object? sink  equal? select reply 'kind 'text] [
-                chunks: select reply 'chunks
-                either all [block? chunks  not empty? chunks] [
-                    foreach c chunks [
-                        if string? c [sink/call c]
-                    ]
+            ; HTTP stream path (skip blocking complete post).
+            if all [empty? queue  none? script-path  not none? http-url] [
+                either object? cancel-obj [
+                    return run-llm-http-stream/on-chunk/cancel host-ref http-url messages tool-specs sink cancel-obj
                 ][
-                    text: any [select reply 'text ""]
-                    sink/call text
+                    return run-llm-http-stream/on-chunk host-ref http-url messages tool-specs sink
                 ]
+            ]
+            reply: resolve-reply messages tool-specs
+            st: emit-text-chunks reply sink cancel-obj
+            if equal? st 'cancelled [
+                put reply 'cancelled true
             ]
             reply
         ]

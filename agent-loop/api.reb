@@ -191,7 +191,12 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 ]
                 sink/loop-ref: self
                 sink/sid: session-id
-                reply: llm/stream/on-chunk sessions/derive-messages session-id tools/list sink
+                cc: make object! [
+                    loop-ref: none
+                    call: func [] [loop-ref/turn-cancelled?]
+                ]
+                cc/loop-ref: self
+                reply: llm/stream/on-chunk/cancel sessions/derive-messages session-id tools/list sink cc
                 if turn-cancelled? [
                     status: 'cancelled
                     break
