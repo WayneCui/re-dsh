@@ -19,3 +19,4 @@
 - pre deny：不调用 `tools-execute` inner。
 - dispose 当前 fiber 时登记撤回。
 - 工具 spec 可设 `approval: 'ask`；`tools-pre-execute` 返回 `{kind: ask}` 时走 `approval/request`（需 `execute/meta` 传 `session-id` / `call-id`）。
+- `execute/meta` 可传 `cancel-check`（object，`call` → logic!）：settle 每 scheduler tick 检查，命中则返回 `{ok: false cancelled: true}`。

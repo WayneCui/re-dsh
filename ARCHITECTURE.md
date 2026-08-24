@@ -37,7 +37,7 @@ Agent isolate 插件（tools / shell / agent-loop）仍由 `create-agent-handle`
 | tools | 登记工具并通过 waterfall 调用 | 不拥有 bash 实现、不写日志 |
 | llm | 给定消息和工具表，返回 text 或 tool-call | 不执行工具、不拥有 session |
 | shell | 作为 tools 上的一个 `bash` 规格 | 不直接被 loop 调用 |
-| agent-loop | `run-turn` / `resume-turn`；dispose 后拒绝 | 不直接 spawn 进程 |
+| agent-loop | `run-turn` / `resume-turn` / `cancel-turn`；dispose 后拒绝 | 不直接 spawn 进程 |
 | agent | 登记 live agent；create / dispose / lookup | 不驱动 turn、不建 session |
 
 ## 不变量
@@ -45,11 +45,12 @@ Agent isolate 插件（tools / shell / agent-loop）仍由 `create-agent-handle`
 - 模型可见内容必须能从 session 事件重建（derive-messages 只读日志）；配置 `store-dir` 时可跨进程 `open` 恢复；`fork` 后分支互不污染。
 - 工具副作用只发生在 `tools-execute` waterfall 的 inner，或经 host 出口；pre/post 可拒绝或改写结果。
 - 每个 agent = `isolate 'tools` + scope key；session 与 llm 留在根上共享。
-- `agents/dispose` 卸掉 isolate fiber；`agent-loop/run-turn`（及 `resume-turn`）对 inactive fiber 返回 `status: disposed`。
+- `agents/dispose` 先 `cancel-turn`，再卸 isolate fiber；`run-turn` / `resume-turn` 对 inactive fiber 返回 `status: disposed`。
+- turn 取消合作式：`cancel-turn` 置位；loop 与 tools `settle/cancel`（meta `cancel-check`）每 tick 检查；取消写 `cancelled` tool-result。
 - `tools-result` / `session-event` 按 scope 路由；父 scope 可收到子 agent 事件。
 - host 不 import 上层切片。
 
 ## 内核契约（cordis-port）
 
-- waterfall 的 inner / listener 可以返回 thenable；loop 用 `thenable-wait` 取就绪值。
+- waterfall 的 inner / listener 可以返回 thenable；loop / tools 用 settle（可带 cancel）取就绪值。
 - 服务查找走 `reflect/get`，没有 Proxy。

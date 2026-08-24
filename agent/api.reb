@@ -56,10 +56,14 @@ make-agent-registry: func [ctx [object!] root-ctx [object!] /local svc] [
             handle
         ]
 
-        dispose: func [handle [map!] /local id] [
+        dispose: func [handle [map!] /local id driver] [
             unless map? handle [return none]
             id: handle/id
             unless select live id [return none]
+            driver: select handle 'driver
+            if object? driver [
+                try [driver/cancel-turn]
+            ]
             emit-disposed handle
             live: map-remove-key live id
             release-agent-handle handle
