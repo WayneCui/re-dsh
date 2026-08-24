@@ -15,6 +15,12 @@
 | `steer text` | 入队 next-step（waking）；turn 内 step 边界成为 user-message |
 | `inject text` | 入队 next-step（非 waking）；有 followup/steer 时一起被 claim |
 
+## 扩展点
+
+| 事件 | 模式 | 说明 |
+|------|------|------|
+| `agent-pre-step` | waterfall | `[session-id step-n messages]`；返回 block 改写，或 `#[kind: 'reject reason: "..."]` 拒绝并结束 turn |
+
 ## 不变量
 
 - 每一步的模型输入只来自 `sessions/derive-messages`（无旁路缓存）。

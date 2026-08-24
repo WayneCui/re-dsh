@@ -152,9 +152,36 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             ]
         ]
 
-        ; Latest message that can admit another model request.
-        ; Tool result (pending follow-up) or completed assistant text both continue the conversation.
-        ; Empty or unknown shape means no-input.
+        ; agent-pre-step waterfall: return rewritten block, or map! [kind 'reject reason ...] to reject.
+        ; Payload: [session-id step-n proposed-messages]
+        ; carrier: none — agent/pre-step is a root-level event; scope filtering would drop root listeners.
+        run-pre-step: func [session-id [string!] step [integer!] msgs [block!] /local args result inner] [
+            args: reduce [session-id step copy/deep msgs]
+            inner: make object! [
+                call: func [arg-block [block!] this-arg [object! none!]] [
+                    arg-block/3
+                ]
+            ]
+            result: settle ctx/events/waterfall 'agent-pre-step args inner none
+            if thenable? result [result: settle result]
+            result
+        ]
+
+        pre-step-rejected?: func [value] [
+            either map? value [
+                equal? select value 'kind 'reject
+            ][
+                false
+            ]
+        ]
+
+        pre-step-reject-reason: func [value] [
+            either map? value [
+                any [select value 'reason select value 'error "pre-step rejected"]
+            ][
+                "pre-step rejected"
+            ]
+        ]
         continuation-kind: func [session-id [string!] /local msgs m] [
             msgs: sessions/derive-messages session-id
             if empty? msgs [return none]
@@ -282,6 +309,20 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 unless empty? claimed-step [
                     log-inbox-claimed session-id claimed-step
                 ]
+                ; agent-pre-step: listeners may reject or rewrite the proposed messages.
+                proposed: sessions/derive-messages session-id
+                pre-out: run-pre-step session-id step proposed
+                if pre-step-rejected? pre-out [
+                    p: make map! []
+                    put p 'n step
+                    put p 'reason pre-step-reject-reason pre-out
+                    log-event session-id 'step-rejected p
+                    status: 'rejected
+                    break
+                ]
+                if block? pre-out [
+                    proposed: pre-out
+                ]
                 ; Always rebuild model input from the event log (stream ? chunks + final).
                 sink: make object! [
                     loop-ref: none
@@ -301,7 +342,7 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                     call: func [] [loop-ref/turn-cancelled?]
                 ]
                 cc/loop-ref: self
-                reply: llm/stream/on-chunk/cancel sessions/derive-messages session-id tools/list sink cc
+                reply: llm/stream/on-chunk/cancel proposed tools/list sink cc
                 if turn-cancelled? [
                     status: 'cancelled
                     break

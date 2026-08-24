@@ -16,7 +16,7 @@ do %./store.reb
 ; ============================================================
 
 session-event-types: [
-    turn-start turn-end step-start step-end
+    turn-start turn-end step-start step-end step-rejected
     user-message assistant-message assistant-chunk
     tool-call tool-result session-end-seed
     approval-asked approval-decided approval-policy
@@ -75,6 +75,14 @@ validate-payload: func [ev-type [word!] payload [map!]] [
         step-start step-end [
             unless integer? select payload 'n [
                 return "step event requires integer n"
+            ]
+        ]
+        step-rejected [
+            unless integer? select payload 'n [
+                return "step-rejected requires integer n"
+            ]
+            unless string? any [select payload 'reason][
+                return "step-rejected reason must be string"
             ]
         ]
         session-end-seed [
