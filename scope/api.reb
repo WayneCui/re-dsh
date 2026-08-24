@@ -133,7 +133,7 @@ create-agent-handle: func [
     root [object!]
     label [string!]
     /parent parent-key [object! none!]
-    /local key agent-iso tools-svc driver-svc
+    /local key agent-iso tools-svc driver-svc ah
 ] [
     key: mint-scope-key label
     if parent [bind-scope-parent key parent-key]
@@ -144,16 +144,30 @@ create-agent-handle: func [
     agent-iso/registry/plugin loop-plugin none agent-iso
     tools-svc: agent-iso/reflect/get 'tools true agent-iso
     driver-svc: agent-iso/reflect/get 'agent-loop true agent-iso
-    ah: make map! []
-    put ah 'id label
-    put ah 'scope-key key
-    put ah 'ctx agent-iso
-    put ah 'tools tools-svc
-    put ah 'driver driver-svc
+    ; Object handle so inbox/turn methods live on the agent (not only on driver).
+    ah: make object! [
+        id: none
+        scope-key: none
+        ctx: none
+        tools: none
+        driver: none
+        spine: none
+        followup: func [text [string!]] [driver/followup text]
+        steer: func [text [string!]] [driver/steer text]
+        inject: func [text [string!]] [driver/inject text]
+        run-turn: func [session-id [string!] user-text] [driver/run-turn session-id user-text]
+        resume-turn: func [session-id [string!]] [driver/resume-turn session-id]
+        cancel-turn: does [driver/cancel-turn]
+    ]
+    ah/id: copy label
+    ah/scope-key: key
+    ah/ctx: agent-iso
+    ah/tools: tools-svc
+    ah/driver: driver-svc
     ah
 ]
 
-release-agent-handle: func [ah [map!]] [
+release-agent-handle: func [ah [object!]] [
     try [ah/driver/ctx/fiber/dispose/dispose]
     try [ah/tools/ctx/fiber/dispose/dispose]
     none

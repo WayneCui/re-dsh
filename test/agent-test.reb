@@ -21,6 +21,13 @@ assert equal? "hello-a" select out-a 'text "agent A echo"
 assert equal? 'text select out-b 'status "agent B turn"
 assert equal? "hello-b" select out-b 'text "agent B echo"
 
+; ---- inbox lives on the handle, not only on driver ----
+s-f: spine/sessions/create
+agent-b/followup "from-handle"
+out-f: agent-b/run-turn s-f/id none
+assert equal? 'text select out-f 'status "handle followup drives turn"
+assert equal? "from-handle" select out-f 'text "handle followup text"
+
 spine/agents/dispose agent-a
 assert none? spine/agents/get "A" "A removed from registry"
 

@@ -18,17 +18,17 @@ make-agent-registry: func [ctx [object!] root-ctx [object!] /local svc] [
         root-ctx: none
         live: make map! []
 
-        emit-created: func [handle [map!]] [
+        emit-created: func [handle [object!]] [
             try [ctx/events/emit 'agent-created reduce [handle] none]
             none
         ]
 
-        emit-disposed: func [handle [map!]] [
+        emit-disposed: func [handle [object!]] [
             try [ctx/events/emit 'agent-disposed reduce [handle] none]
             none
         ]
 
-        register: func [handle [map!] /local id] [
+        register: func [handle [object!] /local id] [
             id: handle/id
             unless string? id [agent-error "agent handle missing id"]
             put live id handle
@@ -56,8 +56,8 @@ make-agent-registry: func [ctx [object!] root-ctx [object!] /local svc] [
             handle
         ]
 
-        dispose: func [handle [map!] /local id driver] [
-            unless map? handle [return none]
+        dispose: func [handle [object!] /local id driver] [
+            unless object? handle [return none]
             id: handle/id
             unless select live id [return none]
             driver: select handle 'driver

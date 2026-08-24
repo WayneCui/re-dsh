@@ -51,7 +51,7 @@ Agent isolate 插件（tools / shell / agent-loop）仍由 `create-agent-handle`
 | llm | `complete` / `stream`；HTTP 行协议 delta | 不执行工具、不拥有 session |
 | shell | 作为 tools 上的一个 `bash` 规格 | 不直接被 loop 调用 |
 | agent-loop | `run-turn` / `resume-turn` / `cancel-turn`；dispose 后拒绝 | 不直接 spawn 进程 |
-| agent | 登记 live agent；create / dispose / lookup | 不驱动 turn、不建 session |
+| agent | 登记 live agent；handle 上有 followup/run-turn | 不建 session |
 
 ## 不变量
 

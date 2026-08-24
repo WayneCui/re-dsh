@@ -52,18 +52,18 @@ spawn-agent: func [handle [map!] label [string!] /parent parent-key [object! non
 ;   After the swap the agent handle's tools/driver refs are refreshed
 ;   (epoch reload of dependent fibers may have rebuilt them).
 ; ------------------------------------------------------------
-refresh-agent-refs: func [agent-handle [map!] /local actx svc] [
+refresh-agent-refs: func [agent-handle [object!] /local actx svc] [
     actx: agent-handle/ctx
     svc: actx/reflect/get 'tools false actx
-    if object? svc [put agent-handle 'tools svc]
+    if object? svc [agent-handle/tools: svc]
     svc: actx/reflect/get 'agent-loop false actx
-    if object? svc [put agent-handle 'driver svc]
+    if object? svc [agent-handle/driver: svc]
     none
 ]
 
 ; A live turn must not observe a half-swapped plugin set: ask it to cancel
 ; first. In this synchronous loop the turn converges at its next checkpoint.
-quiesce-agent: func [agent-handle [map!] /local driver] [
+quiesce-agent: func [agent-handle [object!] /local driver] [
     driver: select agent-handle 'driver
     if all [object? driver string? driver/live-session-id] [
         driver/cancel-turn
@@ -81,7 +81,7 @@ carry-inbox: func [old-driver new-driver] [
 ]
 
 reload-agent-plugin: func [
-    agent-handle [map!]
+    agent-handle [object!]
     name [string!]
     path [file!]
     /local result old-driver spine
@@ -160,7 +160,7 @@ boot-spine: func [
     put handle 'llm root/reflect/get 'llm true root
     put handle 'tools boot-default/tools
     put handle 'driver boot-default/driver
-    put boot-default 'spine handle
+    boot-default/spine: handle
     handle
 ]
 
