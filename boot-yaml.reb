@@ -168,6 +168,7 @@ boot-spine-from-config: func [
     put handle 'llm root/reflect/get 'llm true root
     put handle 'tools boot-default/tools
     put handle 'driver boot-default/driver
+    put boot-default 'spine handle
     handle
 ]
 

@@ -61,34 +61,67 @@ refresh-agent-refs: func [agent-handle [map!] /local actx svc] [
     none
 ]
 
+; A live turn must not observe a half-swapped plugin set: ask it to cancel
+; first. In this synchronous loop the turn converges at its next checkpoint.
+quiesce-agent: func [agent-handle [map!] /local driver] [
+    driver: select agent-handle 'driver
+    if all [object? driver string? driver/live-session-id] [
+        driver/cancel-turn
+    ]
+    driver
+]
+
+; Inbox queues are volatile driver state; move them to the rebuilt driver.
+carry-inbox: func [old-driver new-driver] [
+    if all [object? old-driver object? new-driver not same? old-driver new-driver] [
+        append new-driver/inbox-next-turn old-driver/inbox-next-turn
+        append new-driver/inbox-next-step old-driver/inbox-next-step
+    ]
+    none
+]
+
 reload-agent-plugin: func [
     agent-handle [map!]
     name [string!]
     path [file!]
-    /local result
+    /local result old-driver spine
 ] [
+    old-driver: quiesce-agent agent-handle
     result: reload-plugin agent-handle/ctx name path
     unless equal? result true [return result]
     refresh-agent-refs agent-handle
+    carry-inbox old-driver select agent-handle 'driver
+    ; Keep the owning spine handle in sync when this agent is its default.
+    spine: select agent-handle 'spine
+    if all [map? spine same? agent-handle select spine 'default-agent] [
+        put spine 'tools agent-handle/tools
+        put spine 'driver agent-handle/driver
+    ]
     true
 ]
 
 ; reload-spine-plugin: swap a root plugin (e.g. llm), then refresh every
 ; live agent handle — dependent fibers epoch-reload, so service objects
-; captured before the swap are stale.
+; captured before the swap are stale. Live turns are cancelled first and
+; pending inbox carries over.
 reload-spine-plugin: func [
     handle [map!]
     name [string!]
     path [file!]
-    /local result root svc ah
+    /local result root svc ah old-drivers
 ] [
     root: handle/ctx
+    old-drivers: make map! []
+    foreach ah handle/agents/list [
+        put old-drivers ah/id quiesce-agent ah
+    ]
     result: reload-plugin root name path
     unless equal? result true [return result]
     svc: root/reflect/get to-word name false root
     if object? svc [put handle to-word name svc]
     foreach ah handle/agents/list [
         refresh-agent-refs ah
+        carry-inbox select old-drivers ah/id ah/driver
         if same? ah select handle 'default-agent [
             put handle 'tools ah/tools
             put handle 'driver ah/driver
@@ -127,6 +160,7 @@ boot-spine: func [
     put handle 'llm root/reflect/get 'llm true root
     put handle 'tools boot-default/tools
     put handle 'driver boot-default/driver
+    put boot-default 'spine handle
     handle
 ]
 
