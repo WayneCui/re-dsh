@@ -1,0 +1,20 @@
+# Full-chain spine: persist + script LLM. Isolate plugins still come from create-agent-handle.
+
+- id: host
+  name: host
+
+- id: sessions
+  name: session
+  config:
+    store-dir: test/tmp-full-chain-store/
+
+- id: approval
+  name: approval
+
+- id: llm
+  name: llm
+  config:
+    script: examples/full-chain-llm.reb
+
+- id: agents
+  name: agents

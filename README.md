@@ -7,6 +7,7 @@
 ```
 bash test/run-all.sh
 r3 -s examples/echo-turn.reb
+r3 -s examples/full-chain.reb
 r3 -s boot-yaml.reb --dump-config
 ```
 
