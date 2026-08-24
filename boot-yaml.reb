@@ -8,6 +8,7 @@ if system/options/path [change-dir system/options/path]
 
 do %boot.reb
 do %../cordis-port/loader/api.reb
+do %profile.reb
 
 make-spine-plugin-map: func [] [
     m: make map! []
@@ -21,7 +22,7 @@ make-spine-plugin-map: func [] [
 
 default-config-file: %cordis.yml
 
-parse-boot-args: func [/local args mode file patches] [
+parse-boot-args: func [/local args mode file patches profile] [
     args: copy []
     if all [block? system/options/args  not empty? system/options/args] [
         args: system/options/args
@@ -32,6 +33,7 @@ parse-boot-args: func [/local args mode file patches] [
     mode: 'boot
     file: default-config-file
     patches: copy []
+    profile: none
     while [all [block? args  not empty? args]] [
         either args/1 = "--dump-config" [
             mode: 'dump
@@ -41,13 +43,20 @@ parse-boot-args: func [/local args mode file patches] [
                 args: next args
             ]
         ][
-            either args/1 = "--patch" [
+            either args/1 = "--profile" [
                 args: next args
-                unless all [block? args  not empty? args] [break]
-                append patches to-file args/1
+                unless all [block? args  not empty? args  string? args/1] [break]
+                profile: args/1
                 args: next args
             ][
-                break
+                either args/1 = "--patch" [
+                    args: next args
+                    unless all [block? args  not empty? args] [break]
+                    append patches to-file args/1
+                    args: next args
+                ][
+                    break
+                ]
             ]
         ]
     ]
@@ -55,43 +64,55 @@ parse-boot-args: func [/local args mode file patches] [
     put m 'mode mode
     put m 'file file
     put m 'patches patches
+    put m 'profile profile
     m
 ]
 
 compose-spine-entries: func [
     /config config-file [file!]
+    /profile profile-name [string! none!]
     /patches patch-files [block! none!]
+    /local home
 ] [
-    either patches [
-        compose-entry-config/patches any [config-file default-config-file] any [patch-files []]
+    home: default-home-patch-path
+    either string? profile-name [
+        either home [
+            compose-profile-entries/home/patches profile-dir-of profile-name home any [patch-files []]
+        ][
+            compose-profile-entries/patches profile-dir-of profile-name any [patch-files []]
+        ]
     ][
-        compose-entry-config any [config-file default-config-file]
+        either patches [
+            compose-entry-config/patches any [config-file default-config-file] any [patch-files []]
+        ][
+            compose-entry-config any [config-file default-config-file]
+        ]
     ]
 ]
 
 dump-spine-config: func [
     /config config-file [file!]
+    /profile profile-name [string! none!]
     /patches patch-files [block! none!]
 ] [
-    entries: either patches [
-        compose-spine-entries/config/patches any [config-file default-config-file] any [patch-files []]
-    ][
-        compose-spine-entries/config any [config-file default-config-file]
-    ]
+    entries: compose-spine-entries/config/profile/patches
+        any [config-file default-config-file]
+        profile-name
+        any [patch-files []]
     print dump-entry-block entries
     none
 ]
 
 boot-spine-from-config: func [
     /config config-file [file!]
+    /profile profile-name [string! none!]
     /patches patch-files [block! none!]
     /local root entries boot-default default-ctx agents-svc handle plugin-map
 ] [
-    entries: either patches [
-        compose-spine-entries/config/patches any [config-file default-config-file] any [patch-files []]
-    ][
-        compose-spine-entries/config any [config-file default-config-file]
-    ]
+    entries: compose-spine-entries/config/profile/patches
+        any [config-file default-config-file]
+        profile-name
+        any [patch-files []]
     root: make-context
     attach-scheduler root
     plugin-map: make-spine-plugin-map
@@ -115,13 +136,16 @@ boot-spine-from-config: func [
     handle
 ]
 
+boot-spine-from-profile: func [
+    profile-name [string!]
+    /patches patch-files [block! none!]
+] [
+    boot-spine-from-config/profile/patches profile-name any [patch-files []]
+]
+
 cli: parse-boot-args
 either cli/mode = 'dump [
-    either empty? cli/patches [
-        dump-spine-config/config cli/file
-    ][
-        dump-spine-config/config/patches cli/file cli/patches
-    ]
+    dump-spine-config/config/profile/patches cli/file cli/profile cli/patches
 ][
     print "harness-spine boot-yaml loaded"
 ]

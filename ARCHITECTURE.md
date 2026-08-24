@@ -1,7 +1,20 @@
 # harness-spine 模块地图
 
 脊柱改写：session 日志 + tools waterfall + agent-loop + 一个 LLM + 一个 shell。
-插件用 `registry/plugin` 装配。没有 profile / bundle / HMR。
+插件用 `registry/plugin` 或 YAML/profile 叠层装配。
+
+## 装配入口
+
+| 入口 | 用途 |
+|------|------|
+| `boot.reb` → `boot-spine` | 代码里直接 `registry/plugin` |
+| `boot-yaml.reb` → `boot-spine-from-config` | `cordis.yml` + 可选 patch |
+| `profile.reb` + `boot-spine-from-profile` | `profiles/<name>/` + `bundles/` 叠层 |
+| `r3 -s boot-yaml.reb --profile minimal --dump-config` | 打印叠层后的 entry 列表 |
+
+叠层顺序：**bundle → profile → home（`HARNESS_HOME/cordis.patch.reb` 或根 `cordis.patch.reb`）→ `--patch`**。
+
+`profiles/minimal` 等价于根 `cordis.yml`；`profiles/full` 等价于 `examples/full-chain.yml`。
 
 ## 依赖 DAG
 
@@ -22,9 +35,9 @@ boot / boot-yaml 只做装配，不含业务。
 装配有两条入口：
 
 - `boot.reb` → `boot-spine`：代码里直接 `registry/plugin`
-- `boot-yaml.reb` → `boot-spine-from-config`：读 `cordis.yml`（+ 可选 `cordis.patch.reb`），经 cordis-port `include` + `loader` 挂载；`r3 -s boot-yaml.reb --dump-config` 打印解析后的 entry 列表
+- `boot-yaml.reb` → `boot-spine-from-config` / `boot-spine-from-profile`：YAML 或 profile 叠层，经 cordis-port `include` + `loader` 挂载
 
-Agent isolate 插件（tools / shell / agent-loop）仍由 `create-agent-handle` 安装，不进根 YAML。
+Agent isolate 插件（tools / shell / agent-loop）仍由 `create-agent-handle` 安装，不进根 YAML/profile entry 列表。
 
 ## 模块
 
