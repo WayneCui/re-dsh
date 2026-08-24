@@ -16,8 +16,15 @@ cordis-port (kernel)
   -> llm           complete(messages, tool-specs)；enqueue / script / http / echo
   -> agent-loop    一轮 turn：写日志、问模型、跑工具、再问
   -> agent         live 注册表：create / dispose / list；agent-created / agent-disposed
-boot 只做装配，不含业务。
+boot / boot-yaml 只做装配，不含业务。
 ```
+
+装配有两条入口：
+
+- `boot.reb` → `boot-spine`：代码里直接 `registry/plugin`
+- `boot-yaml.reb` → `boot-spine-from-config`：读 `cordis.yml`（+ 可选 `cordis.patch.reb`），经 cordis-port `include` + `loader` 挂载；`r3 -s boot-yaml.reb --dump-config` 打印解析后的 entry 列表
+
+Agent isolate 插件（tools / shell / agent-loop）仍由 `create-agent-handle` 安装，不进根 YAML。
 
 ## 模块
 

@@ -1,0 +1,17 @@
+# Minimal harness-spine root plugins — equivalent to boot-spine registry/plugin calls.
+# Agent isolate plugins (tools/shell/agent-loop) still come from create-agent-handle.
+
+- id: host
+  name: host
+
+- id: sessions
+  name: session
+
+- id: approval
+  name: approval
+
+- id: llm
+  name: llm
+
+- id: agents
+  name: agents
