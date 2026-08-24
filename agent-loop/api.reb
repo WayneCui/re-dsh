@@ -182,6 +182,38 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 "pre-step rejected"
             ]
         ]
+
+        ; agent-request waterfall: rewrite the LLM request (messages / tools / llm)
+        ; after pre-step. Payload: [session-id step-n request-map]
+        ; Distinct from pre-step: pre-step edits the step's proposed messages;
+        ; request is the last chance to reroute provider or reshape the call.
+        run-request: func [session-id [string!] step [integer!] req [map!] /local args result inner] [
+            args: reduce [session-id step req]
+            inner: make object! [
+                call: func [arg-block [block!] this-arg [object! none!]] [
+                    arg-block/3
+                ]
+            ]
+            result: settle ctx/events/waterfall 'agent-request args inner none
+            if thenable? result [result: settle result]
+            result
+        ]
+
+        request-rejected?: func [value] [
+            either map? value [
+                equal? select value 'kind 'reject
+            ][
+                false
+            ]
+        ]
+
+        request-reject-reason: func [value] [
+            either map? value [
+                any [select value 'reason select value 'error "request rejected"]
+            ][
+                "request rejected"
+            ]
+        ]
         continuation-kind: func [session-id [string!] /local msgs m] [
             msgs: sessions/derive-messages session-id
             if empty? msgs [return none]
@@ -256,7 +288,7 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             session-id [string!]
             /user user-text [string!]
             /resume
-            /local step reply result status last-text p call-id meta tool-name cc sink
+            /local step reply result status last-text p call-id meta tool-name cc sink claimed claimed-step proposed pre-out req req-out spec step-llm
         ] [
             unless agent-active? [
                 return disposed-turn-result
@@ -323,6 +355,30 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                 if block? pre-out [
                     proposed: pre-out
                 ]
+                ; agent-request: last rewrite of messages / tools / llm before the call.
+                req: make map! []
+                put req 'messages proposed
+                put req 'tools tools/list
+                put req 'llm llm
+                req-out: run-request session-id step req
+                if request-rejected? req-out [
+                    p: make map! []
+                    put p 'n step
+                    put p 'reason request-reject-reason req-out
+                    log-event session-id 'step-rejected p
+                    status: 'rejected
+                    break
+                ]
+                either map? req-out [
+                    if block? select req-out 'messages [proposed: select req-out 'messages]
+                    spec: select req-out 'tools
+                    unless block? spec [spec: tools/list]
+                    step-llm: select req-out 'llm
+                    unless object? step-llm [step-llm: llm]
+                ][
+                    spec: tools/list
+                    step-llm: llm
+                ]
                 ; Always rebuild model input from the event log (stream ? chunks + final).
                 sink: make object! [
                     loop-ref: none
@@ -342,7 +398,7 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                     call: func [] [loop-ref/turn-cancelled?]
                 ]
                 cc/loop-ref: self
-                reply: llm/stream/on-chunk/cancel proposed tools/list sink cc
+                reply: step-llm/stream/on-chunk/cancel proposed spec sink cc
                 if turn-cancelled? [
                     status: 'cancelled
                     break

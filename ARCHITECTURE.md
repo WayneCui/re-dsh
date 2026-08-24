@@ -27,7 +27,7 @@ cordis-port (kernel)
   -> tools         注册表 + pre/execute/post waterfall + tools-result emit
        -> shell    把 bash 登记到 tools，经 host 执行
   -> llm           complete / stream（含 HTTP 行协议 + abort）；enqueue / script / http / echo
-  -> agent-loop    一轮 turn：写日志、流式问模型（cancel 贯通）、跑工具、再问；resume-turn 无新 user
+  -> agent-loop    一轮 turn：写日志、流式问模型（cancel 贯通）、跑工具、再问；resume-turn 无新 user；agent-pre-step / agent-request waterfall
   -> agent         live 注册表：create / dispose / list；agent-created / agent-disposed
 boot / boot-yaml 只做装配，不含业务。
 ```

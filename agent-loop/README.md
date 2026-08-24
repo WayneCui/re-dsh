@@ -20,6 +20,7 @@
 | 事件 | 模式 | 说明 |
 |------|------|------|
 | `agent-pre-step` | waterfall | `[session-id step-n messages]`；返回 block 改写，或 `#[kind: 'reject reason: "..."]` 拒绝并结束 turn |
+| `agent-request` | waterfall | `[session-id step-n request]`；`request` 含 `messages` / `tools` / `llm`。可改写或拒绝。pre-step 改 step 输入；request 改这次 LLM 调用（含换 llm） |
 
 ## 不变量
 
