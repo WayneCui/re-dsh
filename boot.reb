@@ -113,12 +113,12 @@ reload-spine-plugin: func [
     root: handle/ctx
     old-drivers: make map! []
     foreach ah handle/agents/list [
-        put old-drivers ah/id quiesce-agent ah
+        put old-drivers ah/id (quiesce-agent ah)
     ]
     result: reload-plugin root name path
     unless equal? result true [return result]
-    svc: root/reflect/get to-word name false root
-    if object? svc [put handle to-word name svc]
+    svc: root/reflect/get (to-word name) false root
+    if object? svc [put handle (to-word name) svc]
     foreach ah handle/agents/list [
         refresh-agent-refs ah
         carry-inbox select old-drivers ah/id ah/driver
