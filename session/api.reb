@@ -1,11 +1,13 @@
 REBOL []
 
 do %./json.reb
+do %./store.reb
 
 ; ============================================================
 ; session/api.reb
 ;
 ; Append-only event log with hardened payloads and replay from seed.
+; Optional file backend via config store-dir (see session/store.reb).
 ;
 ; Event types (word!):
 ;   turn-start turn-end step-start step-end
@@ -146,12 +148,36 @@ validate-event-log: func [events [block!] /local i ev err] [
     ]
 ]
 
-make-session-store: func [ctx [object!] /local store] [
+note-session-seq: func [store [object!] id [string!] /local n] [
+    if all [
+        string? id
+        #"s" = id/1
+        integer? try [n: to-integer copy next id]
+    ][
+        if n > store/seq [store/seq: n]
+    ]
+    none
+]
+
+resolve-store-backend: func [cfg /local dir] [
+    unless map? cfg [return none]
+    dir: any [select cfg 'store-dir select cfg "store-dir"]
+    if string? dir [dir: to-file dir]
+    either file? dir [make-file-session-backend dir][none]
+]
+
+make-session-store: func [
+    ctx [object!]
+    /config cfg [map! none!]
+    /local store backend
+] [
+    backend: resolve-store-backend any [cfg none]
     store: make object! [
         ctx: none
         name: none
         sessions: make map! []
         seq: 0
+        backend: none
 
         safe-emit: func [session [object!] ev [map!] carrier [object! none!]] [
             try [
@@ -160,6 +186,13 @@ make-session-store: func [ctx [object!] /local store] [
                 ][
                     ctx/events/emit 'session-event reduce [session ev] none
                 ]
+            ]
+            none
+        ]
+
+        persist!: func [s [object!]] [
+            if object? backend [
+                backend/save-session s/id s/events
             ]
             none
         ]
@@ -173,6 +206,7 @@ make-session-store: func [ctx [object!] /local store] [
                 live-index: 0
             ]
             put sessions sid s
+            persist! s
             s
         ]
 
@@ -196,11 +230,52 @@ make-session-store: func [ctx [object!] /local store] [
             ]
             s/live-index: length? s/events
             put sessions sid s
+            persist! s
             s
         ]
 
         find-session: func [id [string!]] [
             select sessions id
+        ]
+
+        open: func [session-id [string!] /local events s i ev snap] [
+            s: find-session session-id
+            if object? s [return s]
+            unless object? backend [
+                session-error "open requires store-dir backend"
+            ]
+            events: backend/load-session session-id
+            unless block? events [return none]
+            validate-event-log events
+            s: make object! [
+                id: none
+                events: copy []
+                live-index: 0
+            ]
+            put s 'id session-id
+            i: 0
+            foreach ev events [
+                snap: make-event-record
+                    select ev 'type
+                    snapshot-json-map select ev 'payload
+                    i
+                append s/events snap
+                i: i + 1
+            ]
+            s/live-index: length? s/events
+            put sessions session-id s
+            note-session-seq self session-id
+            s
+        ]
+
+        save: func [session-id [string!] /local s] [
+            s: find-session session-id
+            unless object? s [return none]
+            unless object? backend [
+                session-error "save requires store-dir backend"
+            ]
+            persist! s
+            s
         ]
 
         append-event: func [
@@ -219,6 +294,7 @@ make-session-store: func [ctx [object!] /local store] [
             append s/events ev
             carrier: if dispatch-ctx [make-scope-target scope-of dc][none]
             safe-emit s ev carrier
+            persist! s
             ev
         ]
 
@@ -273,6 +349,10 @@ make-session-store: func [ctx [object!] /local store] [
         ]
     ]
     store/ctx: ctx
+    store/backend: backend
+    if object? backend [
+        foreach id backend/list-ids [note-session-seq store id]
+    ]
     store
 ]
 
@@ -280,7 +360,11 @@ session-plugin: make object! [
     name: "session"
     inject: []
     apply: func [ctx [object!] config] [
-        make-service ctx 'sessions make-session-store ctx
+        either map? config [
+            make-service ctx 'sessions make-session-store/config ctx config
+        ][
+            make-service ctx 'sessions make-session-store ctx
+        ]
         none
     ]
 ]

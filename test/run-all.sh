@@ -4,7 +4,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 fail=0
 ok=0
-for t in test/host-test.reb test/session-test.reb test/tools-test.reb \
+for t in test/host-test.reb test/session-test.reb test/session-persist-test.reb test/tools-test.reb \
          test/llm-test.reb test/llm-script-test.reb test/approval-test.reb test/shell-test.reb test/loop-test.reb \
          test/isolate-test.reb test/scope-test.reb test/agent-test.reb test/yaml-boot-test.reb; do
   echo "######## $t ########"

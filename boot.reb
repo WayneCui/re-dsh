@@ -42,11 +42,16 @@ spawn-agent: func [handle [map!] label [string!] /parent parent-key [object! non
     ]
 ]
 
-boot-spine: func [/llm-config llm-map [map! none!] /local root boot-default handle default-ctx llm-cfg] [
+boot-spine: func [
+    /llm-config llm-map [map! none!]
+    /session-config session-map [map! none!]
+    /local root boot-default handle default-ctx llm-cfg session-cfg
+] [
     root: make-context
     attach-scheduler root
     root/registry/plugin host-plugin none root
-    root/registry/plugin session-plugin none root
+    session-cfg: any [session-map none]
+    root/registry/plugin session-plugin session-cfg root
     root/registry/plugin approval-plugin none root
     llm-cfg: any [llm-map make map! []]
     root/registry/plugin llm-plugin llm-cfg root
