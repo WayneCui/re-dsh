@@ -9,8 +9,9 @@
 
 - id: llm
   name: llm
+  intercept:
+    agent-loop:
+      max-steps: 2
 
 - id: agents
   name: agents
-  intercept:
-    logger: debug

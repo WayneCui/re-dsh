@@ -117,14 +117,15 @@ make-llm-service: func [
 llm-plugin: make object! [
     name: "llm"
     inject: [host]
-    apply: func [ctx [object!] config /local host script-path http-url svc] [
+    apply: func [ctx [object!] config /local host script-path http-url svc resolved] [
         host: ctx/reflect/get 'host true ctx
-        script-path: select config 'script
-        http-url: select config 'http-url
         svc: make-llm-service/host ctx host
+        make-service ctx 'llm svc
+        resolved: service-resolve-config svc either map? config [config][none] none
+        script-path: select resolved 'script
+        http-url: select resolved 'http-url
         if script-path [svc/script-path: script-path]
         if http-url [svc/http-url: http-url]
-        make-service ctx 'llm svc
         none
     ]
 ]

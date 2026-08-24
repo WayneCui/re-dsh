@@ -419,11 +419,15 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
 loop-plugin: make object! [
     name: "agent-loop"
     inject: [sessions tools llm]
-    apply: func [ctx [object!] config /local sessions tools llm] [
+    apply: func [ctx [object!] config /local sessions tools llm loop resolved ms] [
         sessions: ctx/reflect/get 'sessions true ctx
         tools: ctx/reflect/get 'tools true ctx
         llm: ctx/reflect/get 'llm true ctx
-        make-service ctx 'agent-loop make-agent-loop ctx sessions tools llm
+        loop: make-agent-loop ctx sessions tools llm
+        make-service ctx 'agent-loop loop
+        resolved: service-resolve-config loop either map? config [config][none] none
+        ms: select resolved 'max-steps
+        if integer? ms [loop/max-steps: ms]
         none
     ]
 ]

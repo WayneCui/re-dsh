@@ -67,4 +67,5 @@ Agent isolate 插件（tools / shell / agent-loop）仍由 `create-agent-handle`
 
 - waterfall 的 inner / listener 可以返回 thenable；loop / tools 用 settle（可带 cancel）取就绪值。
 - 服务查找走 `reflect/get`，没有 Proxy。
+- intercept: YAML `intercept` 叠到 ctx `intercept-chain`（in-place `prepend-intercept`，不新建 logger）；`llm` / `agent-loop` 经 `service-resolve-config` 读合并配置（如 `max-steps`）。
 - reload fixture 里嵌套 `do` 的相对路径 rebase 到 fixture 自身目录（详见 cordis-port ROADMAP §4.8）。
