@@ -95,12 +95,33 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             ]
         ]
 
+        ; Latest message that can admit another model request.
+        ; Tool result (pending follow-up) or completed assistant text both continue the conversation.
+        ; Empty or unknown shape means no-input.
+        continuation-kind: func [session-id [string!] /local msgs m] [
+            msgs: sessions/derive-messages session-id
+            if empty? msgs [return none]
+            m: last msgs
+            either find [tool assistant] select m 'role [select m 'role][none]
+        ]
+
         disposed-turn-result: func [] [
             te: make map! []
             put te 'status 'disposed
             put te 'steps 0
             put te 'text ""
             te
+        ]
+
+        no-input-turn-result: func [session-id [string!] /local te] [
+            te: make map! []
+            put te 'status 'no-input
+            put te 'steps 0
+            put te 'text ""
+            log-event session-id 'turn-end te
+            live-session-id: none
+            cancel-requested: false
+            copy te
         ]
 
         find-session?: func [session-id [string!]] [
@@ -157,6 +178,11 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
             if turn-cancelled? [
                 return finish-turn session-id 'cancelled 0 ""
             ]
+            ; Resume is meaningful when the log ends with tool result or assistant text;
+            ; only a missing/unusable last message means no-input.
+            if all [resume not continuation-kind session-id] [
+                return no-input-turn-result session-id
+            ]
             step: 0
             status: 'text
             last-text: ""
@@ -165,11 +191,11 @@ make-agent-loop: func [ctx [object!] sessions [object!] tools [object!] llm [obj
                     status: 'cancelled
                     break
                 ]
-                step: step + 1
-                if step > max-steps [
+                if step >= max-steps [
                     status: 'max-steps
                     break
                 ]
+                step: step + 1
                 p: make map! []
                 put p 'n step
                 log-event session-id 'step-start p

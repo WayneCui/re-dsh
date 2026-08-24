@@ -9,7 +9,7 @@
 | 方法 | 说明 |
 |------|------|
 | `run-turn session-id user-text` | 追加 user-message，再跑 turn |
-| `resume-turn session-id` | **不**追加 user-message；仅从 `derive-messages` 继续 |
+| `resume-turn session-id` | **不**追加 user-message；从 `derive-messages` 续跑（日志以 tool 或 assistant 结尾时可续；空日志返回 `status: no-input`） |
 | `cancel-turn` | 请求取消当前 live turn；idle 时返回 `none` 且不粘滞标志 |
 
 ## 不变量
