@@ -117,6 +117,7 @@ make-host-service: func [ctx [object!] /local svc] [
             result: make map! []
             either error? body [
                 put result 'ok false
+                put result 'body ""
                 put result 'error form body
             ][
                 put result 'ok true

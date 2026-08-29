@@ -16,6 +16,11 @@ assert to-logic select g 'ok "file read ok"
 assert equal? "host-file" select g 'body "file body"
 delete %spine-host-get.txt
 
+g2: h/http-get %spine-host-missing.txt
+assert not to-logic select g2 'ok "missing file not ok"
+assert equal? "" select g2 'body "missing file body empty, not none"
+assert string? select g2 'error "missing file error string"
+
 d: h/delay 5 99
 assert thenable? d "delay is thenable"
 assert equal? 99 h/settle d "settle pumps delay"
