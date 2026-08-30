@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="760" viewBox="0 0 960 760" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+<rect width="960" height="760" fill="#FDF6EC"/>
+<text x="480" y="40" font-size="27" font-weight="800" text-anchor="middle" fill="#1F2937">第 4 章 · 工具的安检通道</text>
+<line x1="34" y1="52" x2="926" y2="52" stroke="#1F2937" stroke-width="1.6"/>
+<rect x="34" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc0)">
+<g transform="translate(124,336) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -76 Q -14 -88 0 -88 Q 14 -88 14 -76 Z" fill="#DC2626" stroke="#1F2937" stroke-width="1.6"/><rect x="-18" y="-80" width="36" height="6" rx="2.5" fill="#DC2626" stroke="#1F2937" stroke-width="1.4"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#DC2626" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-22" y2="-48" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="24" y2="-46" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="26" y1="-64" x2="26" y2="-8" stroke="#DC2626" stroke-width="6" stroke-linecap="round"/></g>
+<g transform="translate(234,336) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -74 Q -13 -89 0 -89 Q 13 -89 14 -74 Q 8 -80 0 -79 Q -8 -80 -14 -74 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="1.6"/><path d="M -15 -72 Q -17 -60 -12 -55 L -10 -62" fill="#F59E0B" stroke="#1F2937" stroke-width="1.4"/><circle cx="-5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><circle cx="5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><line x1="-1.2" y1="-71" x2="1.2" y2="-71" stroke="#1F2937" stroke-width="1.5"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-16" y2="-36" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="16" y2="-36" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/><rect x="-18" y="-36" width="36" height="22" rx="3" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/><text x="0" y="-21" font-size="10" text-anchor="middle" fill="#1F2937">inbox</text></g>
+<rect x="274" y="108" width="180" height="48" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 274 126 L 262 136 L 274 140 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="364" y="130" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">kind: 'deny —</text>
+<text x="364" y="146" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">回家吧，飞机没动。</text>
+<text x="254" y="184" font-size="12" text-anchor="middle" fill="#2563EB" font-weight="600">pre：查证件（可拒绝）</text>
+<text x="58" y="94" font-size="15" fill="#1F2937" font-weight="700">tools-pre-execute</text></g>
+<clipPath id="pc0"><rect x="34" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc1)">
+<g transform="translate(637,336) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -74 Q -13 -89 0 -89 Q 13 -89 14 -74 Q 8 -80 0 -79 Q -8 -80 -14 -74 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="1.6"/><path d="M -15 -72 Q -17 -60 -12 -55 L -10 -62" fill="#F59E0B" stroke="#1F2937" stroke-width="1.4"/><circle cx="-5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><circle cx="5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><line x1="-1.2" y1="-71" x2="1.2" y2="-71" stroke="#1F2937" stroke-width="1.5"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-14" y2="-4" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="12" y2="-2" stroke="#1F2937" stroke-width="2.4"/></g>
+<path d="M 687 296 l 14 -34 l 14 34 z" fill="#DC2626" stroke="#1F2937" stroke-width="2"/>
+<path d="M 723 292 q 6 -12 0 -22" stroke="#DC2626" stroke-width="2.4" fill="none"/><path d="M 739 292 q 6 -12 0 -22" stroke="#DC2626" stroke-width="2.4" fill="none"/><path d="M 755 292 q 6 -12 0 -22" stroke="#DC2626" stroke-width="2.4" fill="none"/>
+<text x="707" y="154" font-size="12" text-anchor="middle" fill="#2563EB" font-weight="600">execute：引擎唯一点火处</text>
+<rect x="527" y="104" width="170" height="32" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 605 136 L 612 148 L 619 136 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="612" y="126" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">spec/run/call</text>
+<text x="511" y="94" font-size="15" fill="#1F2937" font-weight="700">tools-execute</text></g>
+<clipPath id="pc1"><rect x="487" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="34" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc2)">
+<rect x="104" y="560" width="50" height="40" fill="#F3E8D3" stroke="#1F2937" stroke-width="2.2"/><line x1="104" y1="560" x2="154" y2="560" stroke="#1F2937" stroke-width="3"/>
+<g transform="translate(174,600) scale(0.9)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><circle cx="9" cy="-87" r="5" fill="#1F2937"/><path d="M -14 -74 Q -13 -88 0 -88 Q 13 -88 14 -74 Q 7 -81 0 -80 Q -7 -81 -14 -74 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#0D9488" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-13" y2="-40" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="16" y2="-42" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/><path d="M -20 -40 Q 0 -48 0 -40 Q 0 -48 20 -40 L 20 -14 Q 0 -20 -20 -14 Z" fill="#FEF3C7" stroke="#1F2937" stroke-width="2"/>
+<line x1="0" y1="-40" x2="0" y2="-14" stroke="#1F2937" stroke-width="1.6"/>
+<line x1="-15" y1="-27" x2="-6" y2="-27" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-27" x2="15" y2="-27" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="-15" y1="-20" x2="-6" y2="-20" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-20" x2="15" y2="-20" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="-15" y1="-13" x2="-6" y2="-13" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-13" x2="15" y2="-13" stroke="#9CA3AF" stroke-width="1.2"/><line x1="14" y1="-46" x2="22" y2="-52" stroke="#1F2937" stroke-width="2.6"/></g>
+<text x="334" y="580" font-size="14" text-anchor="middle" fill="#16A34A" font-weight="600">rewritten</text>
+<g transform="translate(144,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -74 Q -13 -89 0 -89 Q 13 -89 14 -74 Q 8 -80 0 -79 Q -8 -80 -14 -74 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="1.6"/><path d="M -15 -72 Q -17 -60 -12 -55 L -10 -62" fill="#F59E0B" stroke="#1F2937" stroke-width="1.4"/><circle cx="-5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><circle cx="5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><line x1="-1.2" y1="-71" x2="1.2" y2="-71" stroke="#1F2937" stroke-width="1.5"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<rect x="254" y="422" width="200" height="48" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 347 470 L 354 482 L 361 470 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="354" y="444" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">海关：可以改标签，</text>
+<text x="354" y="460" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">不可以偷跑。</text>
+<text x="58" y="408" font-size="15" fill="#1F2937" font-weight="700">tools-post-execute</text></g>
+<clipPath id="pc2"><rect x="34" y="378" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc3)">
+<g transform="translate(687,498) scale(1)">
+<path d="M 0 0 L 26 -16 L 26 16 Z" fill="#64748B" stroke="#1F2937" stroke-width="2"/>
+<rect x="-14" y="-6" width="14" height="12" fill="#1F2937"/>
+<path d="M 30 -12 q 6 4 12 0" stroke="#1F2937" stroke-width="1.6" fill="none"/>
+<path d="M 30 0 q 6 0 12 0" stroke="#1F2937" stroke-width="1.6" fill="none"/>
+<path d="M 30 12 q 6 -4 12 0" stroke="#1F2937" stroke-width="1.6" fill="none"/>
+</g>
+<text x="707" y="448" font-size="15" text-anchor="middle" fill="#2563EB" font-weight="600">tools-result 广播</text>
+<g transform="translate(567,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -74 Q -13 -89 0 -89 Q 13 -89 14 -74 Q 8 -80 0 -79 Q -8 -80 -14 -74 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="1.6"/><path d="M -15 -72 Q -17 -60 -12 -55 L -10 -62" fill="#F59E0B" stroke="#1F2937" stroke-width="1.4"/><circle cx="-5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><circle cx="5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><line x1="-1.2" y1="-71" x2="1.2" y2="-71" stroke="#1F2937" stroke-width="1.5"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<g transform="translate(837,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -78 Q -6 -86 8 -84 Q 14 -83 14 -77 L 12 -74 Q 4 -80 -10 -77 Z" fill="#1F2937"/><path d="M -7 -62 Q 0 -56 7 -62 Q 4 -58 0 -58 Q -4 -58 -7 -62 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#64748B" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<rect x="617" y="528" width="220" height="32" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 720 560 L 727 572 L 734 560 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="727" y="550" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">没上飞机的行程也有广播。</text>
+<text x="511" y="408" font-size="15" fill="#1F2937" font-weight="700">定格：观察者看见做完的 map</text></g>
+<clipPath id="pc3"><rect x="487" y="378" width="439" height="300" rx="10"/></clipPath>
+<text x="480" y="744" font-size="14.5" text-anchor="middle" fill="#1F2937" font-weight="700">拒绝用值不用异常；未知工具照样广播——没有一声不响的 none。</text>
+</svg>

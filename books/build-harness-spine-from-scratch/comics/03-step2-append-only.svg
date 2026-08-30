@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="760" viewBox="0 0 960 760" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+<rect width="960" height="760" fill="#FDF6EC"/>
+<text x="480" y="40" font-size="27" font-weight="800" text-anchor="middle" fill="#1F2937">Step 2 · 只许追加的账本</text>
+<line x1="34" y1="52" x2="926" y2="52" stroke="#1F2937" stroke-width="1.6"/>
+<rect x="34" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc0)">
+<text x="94" y="148" font-size="15" text-anchor="start" fill="#1E3A8A" font-weight="600">① 验明正身</text><text x="94" y="188" font-size="15" text-anchor="start" fill="#1E3A8A" font-weight="600">② 影印存档</text><text x="94" y="228" font-size="15" text-anchor="start" fill="#1E3A8A" font-weight="600">③ 编号追加</text><text x="94" y="268" font-size="15" text-anchor="start" fill="#1E3A8A" font-weight="600">④ 广播</text>
+<g transform="translate(364,336) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -76 Q -14 -88 0 -88 Q 14 -88 14 -76 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="1.6"/><rect x="-19" y="-78" width="38" height="4.5" rx="2" fill="#1F2937"/><path d="M -6 -65 Q 0 -69 6 -65 Q 0 -63 -6 -65 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-13" y2="-40" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="16" y2="-42" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/><path d="M -20 -40 Q 0 -48 0 -40 Q 0 -48 20 -40 L 20 -14 Q 0 -20 -20 -14 Z" fill="#FEF3C7" stroke="#1F2937" stroke-width="2"/>
+<line x1="0" y1="-40" x2="0" y2="-14" stroke="#1F2937" stroke-width="1.6"/>
+<line x1="-15" y1="-27" x2="-6" y2="-27" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-27" x2="15" y2="-27" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="-15" y1="-20" x2="-6" y2="-20" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-20" x2="15" y2="-20" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="-15" y1="-13" x2="-6" y2="-13" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-13" x2="15" y2="-13" stroke="#9CA3AF" stroke-width="1.2"/><line x1="14" y1="-46" x2="22" y2="-52" stroke="#1F2937" stroke-width="2.6"/></g>
+<rect x="224" y="124" width="200" height="32" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 224 134 L 212 144 L 224 148 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="324" y="146" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">纪律做进追加动作。</text>
+<text x="58" y="94" font-size="15" fill="#1F2937" font-weight="700">append-event 四工序</text></g>
+<clipPath id="pc0"><rect x="34" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc1)">
+<rect x="527" y="236" width="86" height="46" rx="5" fill="#E5E7EB" stroke="#1F2937" stroke-width="2"/>
+<rect x="539" y="242" width="62" height="12" rx="2" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.4"/>
+<circle cx="601" cy="268" r="4" fill="#16A34A" stroke="#1F2937" stroke-width="1.2"/>
+<rect x="557" y="282" width="26" height="14" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<line x1="561" y1="296" x2="579" y2="296" stroke="#1F2937" stroke-width="1.4"/>
+<g transform="translate(707,336) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -74 Q -13 -89 0 -89 Q 13 -89 14 -74 Q 8 -80 0 -79 Q -8 -80 -14 -74 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="1.6"/><path d="M -15 -72 Q -17 -60 -12 -55 L -10 -62" fill="#F59E0B" stroke="#1F2937" stroke-width="1.4"/><circle cx="-5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><circle cx="5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><line x1="-1.2" y1="-71" x2="1.2" y2="-71" stroke="#1F2937" stroke-width="1.5"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-16" y2="-36" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="30" y2="-56" stroke="#1F2937" stroke-width="2.4"/><circle cx="32" cy="-56" r="2.6" fill="#1F2937"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<rect x="732" y="114" width="180" height="48" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 732 132 L 720 142 L 732 146 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="822" y="136" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">改原件？</text>
+<text x="822" y="152" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">账本不跟。</text>
+<text x="570" y="352" font-size="13" text-anchor="middle" fill="#16A34A" font-weight="600">FROZEN: before</text>
+<text x="511" y="94" font-size="15" fill="#1F2937" font-weight="700">snapshot-json-map</text></g>
+<clipPath id="pc1"><rect x="487" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="34" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc2)">
+<g transform="translate(134,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -76 Q -14 -88 0 -88 Q 14 -88 14 -76 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="1.6"/><rect x="-19" y="-78" width="38" height="4.5" rx="2" fill="#1F2937"/><path d="M -6 -65 Q 0 -69 6 -65 Q 0 -63 -6 -65 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-22" y2="-48" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="24" y2="-46" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="26" y1="-64" x2="26" y2="-8" stroke="#DC2626" stroke-width="6" stroke-linecap="round"/></g>
+<g transform="translate(224,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -13 -76 L -11 -88 L -6 -80 L -2 -91 L 3 -81 L 8 -90 L 11 -79 L 14 -75 Q 6 -84 -6 -82 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#10B981" stroke="#1F2937" stroke-width="2"/><line x1="10" y1="-52" x2="16" y2="-36" stroke="#1F2937" stroke-width="2.4"/><line x1="-10" y1="-52" x2="-30" y2="-56" stroke="#1F2937" stroke-width="2.4"/><circle cx="-32" cy="-56" r="2.6" fill="#1F2937"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<rect x="254" y="434" width="190" height="48" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 254 452 L 242 462 L 254 466 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="349" y="456" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">函数也塞进去？</text>
+<text x="349" y="472" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">json-map? 不收。</text>
+<text x="58" y="408" font-size="15" fill="#1F2937" font-weight="700">封闭词汇表：未知类型一律拒收</text></g>
+<clipPath id="pc2"><rect x="34" y="378" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc3)">
+<path d="M 527 550 Q 562 542 562 550 Q 562 542 597 550 L 597 551 Q 562 545 527 551 Z" fill="#FEF3C7" stroke="#1F2937" stroke-width="2"/>
+<line x1="562" y1="550" x2="562" y2="551" stroke="#1F2937" stroke-width="1.6"/>
+<line x1="532" y1="563" x2="556" y2="563" stroke="#9CA3AF" stroke-width="1.2"/><line x1="568" y1="563" x2="592" y2="563" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="532" y1="570" x2="556" y2="570" stroke="#9CA3AF" stroke-width="1.2"/><line x1="568" y1="570" x2="592" y2="570" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="532" y1="577" x2="556" y2="577" stroke="#9CA3AF" stroke-width="1.2"/><line x1="568" y1="577" x2="592" y2="577" stroke="#9CA3AF" stroke-width="1.2"/>
+<text x="602" y="536" font-size="12" text-anchor="middle" fill="#1F2937" font-weight="600">parent</text>
+<path d="M 737 550 Q 772 542 772 550 Q 772 542 807 550 L 807 551 Q 772 545 737 551 Z" fill="#FEF3C7" stroke="#1F2937" stroke-width="2"/>
+<line x1="772" y1="550" x2="772" y2="551" stroke="#1F2937" stroke-width="1.6"/>
+<line x1="742" y1="563" x2="766" y2="563" stroke="#9CA3AF" stroke-width="1.2"/><line x1="778" y1="563" x2="802" y2="563" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="742" y1="570" x2="766" y2="570" stroke="#9CA3AF" stroke-width="1.2"/><line x1="778" y1="570" x2="802" y2="570" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="742" y1="577" x2="766" y2="577" stroke="#9CA3AF" stroke-width="1.2"/><line x1="778" y1="577" x2="802" y2="577" stroke="#9CA3AF" stroke-width="1.2"/>
+<text x="812" y="536" font-size="12" text-anchor="middle" fill="#1F2937" font-weight="600">child</text>
+<path d="M 677 580 Q 707 610 737 580" stroke="#1E3A8A" stroke-width="2.4" fill="none" stroke-dasharray="5 4"/>
+<text x="707" y="624" font-size="12" text-anchor="middle" fill="#1E3A8A" font-weight="600">fork：另起一本，开头是影印件</text>
+<text x="511" y="408" font-size="15" fill="#1F2937" font-weight="700">forked-from 是字段不是事件</text></g>
+<clipPath id="pc3"><rect x="487" y="378" width="439" height="300" rx="10"/></clipPath>
+<text x="480" y="744" font-size="14.5" text-anchor="middle" fill="#1F2937" font-weight="700">持久化是配置（store-dir），不是藏起来的全局变量。</text>
+</svg>

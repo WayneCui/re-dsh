@@ -1,0 +1,3 @@
+.verify-out.txt
+.verify-err.txt
+**/tmp-store/

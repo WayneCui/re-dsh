@@ -32,6 +32,14 @@ r3 -s test/loader-test.reb
 
 模块地图见 [ARCHITECTURE.md](ARCHITECTURE.md)。
 
+## 教学材料
+
+| 读本 | 路径 |
+|------|------|
+| 写给所有人的 Harness | [harness-for-everyone/](harness-for-everyone/) |
+| harness-spine 是怎样工作的（带实验） | [how-harness-spine-works/](how-harness-spine-works/) |
+| Head First / 从零构建 | [books/](books/) |
+
 ## 同像热替换（Phase 6）
 
 - `reload-plugin ctx name path`（cordis-port loader）：`do path` 得新插件 → dispose 旧 fiber → 按旧 config/parent 挂新插件；加载失败或新插件启动失败（fiber FAILED）都会回滚到旧插件。

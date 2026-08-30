@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="760" viewBox="0 0 960 760" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+<rect width="960" height="760" fill="#FDF6EC"/>
+<text x="480" y="40" font-size="27" font-weight="800" text-anchor="middle" fill="#1F2937">第 9 章 · 停下，但不撒谎</text>
+<line x1="34" y1="52" x2="926" y2="52" stroke="#1F2937" stroke-width="1.6"/>
+<rect x="34" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc0)">
+<line x1="64" y1="266" x2="444" y2="266" stroke="#1F2937" stroke-width="3"/>
+<line x1="84" y1="266" x2="84" y2="246" stroke="#1F2937" stroke-width="2.5"/>
+<path d="M 84 246 L 104 251 L 84 257 Z" fill="false" stroke="#1F2937" stroke-width="1.4"/><line x1="140" y1="266" x2="140" y2="246" stroke="#1F2937" stroke-width="2.5"/>
+<path d="M 140 246 L 160 251 L 140 257 Z" fill="false" stroke="#1F2937" stroke-width="1.4"/><line x1="196" y1="266" x2="196" y2="246" stroke="#1F2937" stroke-width="2.5"/>
+<path d="M 196 246 L 216 251 L 196 257 Z" fill="false" stroke="#1F2937" stroke-width="1.4"/><line x1="252" y1="266" x2="252" y2="246" stroke="#1F2937" stroke-width="2.5"/>
+<path d="M 252 246 L 272 251 L 252 257 Z" fill="false" stroke="#1F2937" stroke-width="1.4"/><line x1="308" y1="266" x2="308" y2="246" stroke="#1F2937" stroke-width="2.5"/>
+<path d="M 308 246 L 328 251 L 308 257 Z" fill="false" stroke="#1F2937" stroke-width="1.4"/><line x1="364" y1="266" x2="364" y2="246" stroke="#1F2937" stroke-width="2.5"/>
+<path d="M 364 246 L 384 251 L 364 257 Z" fill="false" stroke="#1F2937" stroke-width="1.4"/><line x1="420" y1="266" x2="420" y2="246" stroke="#1F2937" stroke-width="2.5"/>
+<path d="M 420 246 L 440 251 L 420 257 Z" fill="false" stroke="#1F2937" stroke-width="1.4"/>
+<line x1="196" y1="266" x2="196" y2="246" stroke="#1F2937" stroke-width="2.5"/>
+<path d="M 196 246 L 216 251 L 196 257 Z" fill="true" stroke="#1F2937" stroke-width="1.4"/>
+<g transform="translate(168,336) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -74 Q -13 -89 0 -89 Q 13 -89 14 -74 Q 8 -80 0 -79 Q -8 -80 -14 -74 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="1.6"/><path d="M -15 -72 Q -17 -60 -12 -55 L -10 -62" fill="#F59E0B" stroke="#1F2937" stroke-width="1.4"/><circle cx="-5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><circle cx="5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><line x1="-1.2" y1="-71" x2="1.2" y2="-71" stroke="#1F2937" stroke-width="1.5"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-14" y2="-34" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="20" y2="-72" stroke="#1F2937" stroke-width="2.4"/><circle cx="21" cy="-75" r="3.4" fill="#FFE8CC" stroke="#1F2937" stroke-width="1.6"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<text x="264" y="236" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">7 个检查点</text>
+<text x="58" y="94" font-size="15" fill="#1F2937" font-weight="700">在下个检查点举手，不是拔电源</text></g>
+<clipPath id="pc0"><rect x="34" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc1)">
+<g transform="translate(577,336) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -76 Q -14 -88 0 -88 Q 14 -88 14 -76 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="1.6"/><rect x="-19" y="-78" width="38" height="4.5" rx="2" fill="#1F2937"/><path d="M -6 -65 Q 0 -69 6 -65 Q 0 -63 -6 -65 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-13" y2="-40" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="16" y2="-42" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/><path d="M -20 -40 Q 0 -48 0 -40 Q 0 -48 20 -40 L 20 -14 Q 0 -20 -20 -14 Z" fill="#FEF3C7" stroke="#1F2937" stroke-width="2"/>
+<line x1="0" y1="-40" x2="0" y2="-14" stroke="#1F2937" stroke-width="1.6"/>
+<line x1="-15" y1="-27" x2="-6" y2="-27" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-27" x2="15" y2="-27" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="-15" y1="-20" x2="-6" y2="-20" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-20" x2="15" y2="-20" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="-15" y1="-13" x2="-6" y2="-13" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-13" x2="15" y2="-13" stroke="#9CA3AF" stroke-width="1.2"/><line x1="14" y1="-46" x2="22" y2="-52" stroke="#1F2937" stroke-width="2.6"/></g>
+<path d="M 667 232 Q 704 224 704 232 Q 704 224 741 232 L 741 233 Q 704 227 667 233 Z" fill="#FEF3C7" stroke="#1F2937" stroke-width="2"/>
+<line x1="704" y1="232" x2="704" y2="233" stroke="#1F2937" stroke-width="1.6"/>
+<line x1="672" y1="245" x2="698" y2="245" stroke="#9CA3AF" stroke-width="1.2"/><line x1="710" y1="245" x2="736" y2="245" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="672" y1="252" x2="698" y2="252" stroke="#9CA3AF" stroke-width="1.2"/><line x1="710" y1="252" x2="736" y2="252" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="672" y1="259" x2="698" y2="259" stroke="#9CA3AF" stroke-width="1.2"/><line x1="710" y1="259" x2="736" y2="259" stroke="#9CA3AF" stroke-width="1.2"/>
+<text x="687" y="250" font-size="12" text-anchor="start" fill="#1F2937" font-weight="600">tool-call ✓</text>
+<text x="687" y="278" font-size="12" text-anchor="start" fill="#DC2626" font-weight="600">tool-result: "cancelled"</text>
+<text x="687" y="296" font-size="12" text-anchor="start" fill="#9CA3AF" font-weight="600">assistant-message ✗ 无</text>
+<text x="511" y="94" font-size="15" fill="#1F2937" font-weight="700">本体返回被扔掉：不记没发生的成功</text></g>
+<clipPath id="pc1"><rect x="487" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="34" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc2)">
+<text x="154" y="560" font-size="14" text-anchor="middle" fill="#9CA3AF" font-weight="600">空闲站</text>
+<line x1="154" y1="580" x2="154" y2="560" stroke="#1F2937" stroke-width="2.5"/>
+<path d="M 154 560 L 174 565 L 154 571 Z" fill="true" stroke="#1F2937" stroke-width="1.4"/>
+<path d="M 194 555 L 202 563 L 216 545" stroke="#16A34A" stroke-width="4" fill="none" stroke-linecap="round"/>
+<g transform="translate(314,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -74 Q -13 -89 0 -89 Q 13 -89 14 -74 Q 8 -80 0 -79 Q -8 -80 -14 -74 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="1.6"/><path d="M -15 -72 Q -17 -60 -12 -55 L -10 -62" fill="#F59E0B" stroke="#1F2937" stroke-width="1.4"/><circle cx="-5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><circle cx="5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><line x1="-1.2" y1="-71" x2="1.2" y2="-71" stroke="#1F2937" stroke-width="1.5"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="2"/><line x1="10" y1="-52" x2="16" y2="-36" stroke="#1F2937" stroke-width="2.4"/><line x1="-10" y1="-52" x2="-30" y2="-56" stroke="#1F2937" stroke-width="2.4"/><circle cx="-32" cy="-56" r="2.6" fill="#1F2937"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<rect x="234" y="438" width="220" height="48" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 234 456 L 222 466 L 234 470 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="344" y="460" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">空闲取消是空操作：</text>
+<text x="344" y="476" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">旗不许粘住。</text>
+<text x="58" y="408" font-size="15" fill="#1F2937" font-weight="700">cancel-turn：live 才竖旗</text></g>
+<clipPath id="pc2"><rect x="34" y="378" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc3)">
+<g transform="translate(577,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -78 Q -6 -86 8 -84 Q 14 -83 14 -77 L 12 -74 Q 4 -80 -10 -77 Z" fill="#1F2937"/><path d="M -7 -62 Q 0 -56 7 -62 Q 4 -58 0 -58 Q -4 -58 -7 -62 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#64748B" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-16" y2="-36" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="30" y2="-56" stroke="#1F2937" stroke-width="2.4"/><circle cx="32" cy="-56" r="2.6" fill="#1F2937"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<rect x="627" y="438" width="220" height="48" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 627 456 L 615 466 L 627 470 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="737" y="460" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">下一回合照常开工，</text>
+<text x="737" y="476" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">没有鬼魂。</text>
+<g transform="translate(817,590) scale(1)" opacity="0.85">
+<path d="M -14 10 L -14 -4 Q -14 -18 0 -18 Q 14 -18 14 -4 L 14 10 L 9 5 L 5 10 L 0 5 L -5 10 L -9 5 Z"
+ fill="none" stroke="#9CA3AF" stroke-width="2.2" stroke-dasharray="4 3"/>
+<circle cx="-5" cy="-6" r="1.8" fill="#9CA3AF"/><circle cx="5" cy="-6" r="1.8" fill="#9CA3AF"/>
+</g>
+<text x="817" y="640" font-size="12" text-anchor="middle" fill="#9CA3AF" font-weight="600">账本里不许有这个</text>
+<text x="511" y="408" font-size="15" fill="#1F2937" font-weight="700">disposed：一行事件都不写</text></g>
+<clipPath id="pc3"><rect x="487" y="378" width="439" height="300" rx="10"/></clipPath>
+<text x="480" y="744" font-size="14.5" text-anchor="middle" fill="#1F2937" font-weight="700">一面旗，三层检查，没有第二种取消。</text>
+</svg>

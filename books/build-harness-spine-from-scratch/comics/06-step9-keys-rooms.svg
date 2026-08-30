@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="760" viewBox="0 0 960 760" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+<rect width="960" height="760" fill="#FDF6EC"/>
+<text x="480" y="40" font-size="27" font-weight="800" text-anchor="middle" fill="#1F2937">Step 9 · 房间与钥匙</text>
+<line x1="34" y1="52" x2="926" y2="52" stroke="#1F2937" stroke-width="1.6"/>
+<rect x="34" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc0)">
+<g transform="translate(124,336) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -78 Q -6 -86 8 -84 Q 14 -83 14 -77 L 12 -74 Q 4 -80 -10 -77 Z" fill="#1F2937"/><path d="M -7 -62 Q 0 -56 7 -62 Q 4 -58 0 -58 Q -4 -58 -7 -62 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#64748B" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-16" y2="-36" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="30" y2="-56" stroke="#1F2937" stroke-width="2.4"/><circle cx="32" cy="-56" r="2.6" fill="#1F2937"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<rect x="174" y="124" width="220" height="48" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 174 142 L 162 152 L 174 156 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="284" y="146" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">mint-scope-key：</text>
+<text x="284" y="162" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">铸一把不透明钥匙。</text>
+<circle cx="364" cy="276" r="16" fill="none" stroke="#1F2937" stroke-width="2.6"/>
+<rect x="378" y="240" width="34" height="18" rx="3" fill="#F59E0B" stroke="#1F2937" stroke-width="1.4"/><text x="395" y="253" font-size="11" text-anchor="middle" fill="#1F2937">A</text><rect x="378" y="266" width="34" height="18" rx="3" fill="#10B981" stroke="#1F2937" stroke-width="1.4"/><text x="395" y="279" font-size="11" text-anchor="middle" fill="#1F2937">B</text>
+<text x="58" y="94" font-size="15" fill="#1F2937" font-weight="700">钥匙只能持有，不能解析</text></g>
+<clipPath id="pc0"><rect x="34" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc1)">
+
+<rect x="537" y="144" width="170" height="120" rx="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+<text x="622" y="166" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">agent-A isolate</text>
+<text x="622" y="192" font-size="12" text-anchor="middle" fill="#2563EB" font-weight="600">· tools</text><text x="622" y="214" font-size="12" text-anchor="middle" fill="#2563EB" font-weight="600">· shell</text><text x="622" y="236" font-size="12" text-anchor="middle" fill="#2563EB" font-weight="600">· agent-loop</text>
+<rect x="727" y="144" width="170" height="120" rx="8" fill="#FFFFFF" stroke="#1F2937" stroke-width="2"/>
+<text x="812" y="166" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">agent-B isolate</text>
+<text x="812" y="192" font-size="12" text-anchor="middle" fill="#2563EB" font-weight="600">· tools</text><text x="812" y="214" font-size="12" text-anchor="middle" fill="#2563EB" font-weight="600">· shell</text><text x="812" y="236" font-size="12" text-anchor="middle" fill="#2563EB" font-weight="600">· agent-loop</text>
+<text x="511" y="94" font-size="15" fill="#1F2937" font-weight="700">extend-agent-iso：三件套各一份</text></g>
+<clipPath id="pc1"><rect x="487" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="34" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc2)">
+<rect x="124" y="NaN" width="60" height="#E0F2F1" fill="#F3E8D3" stroke="#1F2937" stroke-width="2.2"/><line x1="124" y1="NaN" x2="184" y2="NaN" stroke="#1F2937" stroke-width="3"/>
+<text x="164" y="614" font-size="13" text-anchor="middle" fill="#0D9488" font-weight="600">session</text><text x="256" y="614" font-size="13" text-anchor="middle" fill="#0D9488" font-weight="600">llm</text><text x="348" y="614" font-size="13" text-anchor="middle" fill="#0D9488" font-weight="600">host</text>
+<text x="254" y="448" font-size="13" text-anchor="middle" fill="#0D9488" font-weight="600">根上共享（reflect 走父链）</text>
+<g transform="translate(94,650) scale(0.9)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><circle cx="9" cy="-87" r="5" fill="#1F2937"/><path d="M -14 -74 Q -13 -88 0 -88 Q 13 -88 14 -74 Q 7 -81 0 -80 Q -7 -81 -14 -74 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#0D9488" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<text x="58" y="408" font-size="15" fill="#1F2937" font-weight="700">同一个 reflect，两种归属</text></g>
+<clipPath id="pc2"><rect x="34" y="378" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc3)">
+<line x1="707" y1="458" x2="707" y2="610" stroke="#DC2626" stroke-width="7" stroke-linecap="round"/>
+<text x="617" y="478" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">A 的广播</text>
+<text x="797" y="478" font-size="13" text-anchor="middle" fill="#9CA3AF" font-weight="600">B：听不见</text>
+<text x="807" y="528" font-size="13" text-anchor="middle" fill="#DC2626" font-weight="600">scope-admits? 沿父链核对</text>
+<g transform="translate(577,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -74 Q -13 -89 0 -89 Q 13 -89 14 -74 Q 8 -80 0 -79 Q -8 -80 -14 -74 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="1.6"/><path d="M -15 -72 Q -17 -60 -12 -55 L -10 -62" fill="#F59E0B" stroke="#1F2937" stroke-width="1.4"/><circle cx="-5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><circle cx="5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><line x1="-1.2" y1="-71" x2="1.2" y2="-71" stroke="#1F2937" stroke-width="1.5"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<g transform="translate(837,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -78 Q -6 -86 8 -84 Q 14 -83 14 -77 L 12 -74 Q 4 -80 -10 -77 Z" fill="#1F2937"/><path d="M -7 -62 Q 0 -56 7 -62 Q 4 -58 0 -58 Q -4 -58 -7 -62 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#64748B" stroke="#1F2937" stroke-width="2"/><line x1="10" y1="-52" x2="16" y2="-36" stroke="#1F2937" stroke-width="2.4"/><line x1="-10" y1="-52" x2="-30" y2="-56" stroke="#1F2937" stroke-width="2.4"/><circle cx="-32" cy="-56" r="2.6" fill="#1F2937"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<text x="511" y="408" font-size="14" fill="#1F2937" font-weight="700">父钥匙听连通房——向上汇报是特性</text></g>
+<clipPath id="pc3"><rect x="487" y="378" width="439" height="300" rx="10"/></clipPath>
+<text x="480" y="744" font-size="14.5" text-anchor="middle" fill="#1F2937" font-weight="700">SHARED-MSGS: 4 —— 说话人换了，账本不换。</text>
+</svg>

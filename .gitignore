@@ -1,0 +1,18 @@
+.DS_Store
+*.pdf
+
+# Lab runtime (how-harness-spine-works)
+how-harness-spine-works/.verify-out.txt
+how-harness-spine-works/.verify-err.txt
+**/tmp-store/
+
+# Translation workshop. Reader-facing Chinese books are *-zh*/translation.md
+**/01-analysis.md
+**/02-prompt.md
+**/03-draft.md
+**/04-critique.md
+**/05-revision.md
+**/06-critique.md
+**/*-draft.md
+**/_source.md
+how-harness-spine-works/HOW_HARNESS_SPINE_WORKS-zh-CN/chunks/

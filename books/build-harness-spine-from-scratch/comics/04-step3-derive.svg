@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="760" viewBox="0 0 960 760" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+<rect width="960" height="760" fill="#FDF6EC"/>
+<text x="480" y="40" font-size="27" font-weight="800" text-anchor="middle" fill="#1F2937">Step 3 · 誊本机器</text>
+<line x1="34" y1="52" x2="926" y2="52" stroke="#1F2937" stroke-width="1.6"/>
+<rect x="34" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc0)">
+<rect x="104" y="226" width="60" height="28" rx="5" fill="#EEF2FF" stroke="#1F2937" stroke-width="1.6"/><text x="134" y="246" font-size="14" text-anchor="middle" fill="#1F2937">hel</text><rect x="184" y="226" width="60" height="28" rx="5" fill="#EEF2FF" stroke="#1F2937" stroke-width="1.6"/><text x="214" y="246" font-size="14" text-anchor="middle" fill="#1F2937">lo</text>
+<path d="M 114 270 Q 194 302 274 274" stroke="#1E3A8A" stroke-width="2.4" fill="none" stroke-dasharray="5 4"/>
+<text x="194" y="312" font-size="13" text-anchor="middle" fill="#1E3A8A" font-weight="600">折叠进缓冲</text>
+<text x="58" y="94" font-size="15" fill="#1F2937" font-weight="700">chunk → 一条助手消息</text></g>
+<clipPath id="pc0"><rect x="34" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc1)">
+<g transform="translate(577,336) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -76 Q -14 -88 0 -88 Q 14 -88 14 -76 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="1.6"/><rect x="-19" y="-78" width="38" height="4.5" rx="2" fill="#1F2937"/><path d="M -6 -65 Q 0 -69 6 -65 Q 0 -63 -6 -65 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-16" y2="-36" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="30" y2="-56" stroke="#1F2937" stroke-width="2.4"/><circle cx="32" cy="-56" r="2.6" fill="#1F2937"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<rect x="627" y="120" width="220" height="32" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 627 130 L 615 140 L 627 144 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="737" y="142" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">final 来了，缓冲作废。</text>
+<text x="587" y="214" font-size="13" text-anchor="start" fill="#16A34A" font-weight="600">MESSAGE-WINS: hello-final</text>
+<text x="511" y="94" font-size="15" fill="#1F2937" font-weight="700">最终 assistant-message 说了算</text></g>
+<clipPath id="pc1"><rect x="487" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="34" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc2)">
+<rect x="94" y="530" width="120" height="46" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="154" y="558" font-size="13" text-anchor="middle" fill="#9CA3AF" font-weight="600">簿记碎纸篓</text>
+<rect x="114" y="534" width="38" height="16" rx="3" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.2" transform="rotate(-10 133 542)"/><rect x="158" y="534" width="38" height="16" rx="3" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.2" transform="rotate(14 177 542)"/>
+<g transform="translate(334,650) scale(0.95)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -76 Q -14 -88 0 -88 Q 14 -88 14 -76 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="1.6"/><rect x="-19" y="-78" width="38" height="4.5" rx="2" fill="#1F2937"/><path d="M -6 -65 Q 0 -69 6 -65 Q 0 -63 -6 -65 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<rect x="254" y="448" width="200" height="32" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 254 458 L 242 468 L 254 472 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="354" y="470" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">簿记不上桌。</text>
+<text x="58" y="408" font-size="15" fill="#1F2937" font-weight="700">视图两行，日志七行</text></g>
+<clipPath id="pc2"><rect x="34" y="378" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc3)">
+<rect x="537" y="530" width="130" height="80" rx="8" fill="#FEF2F2" stroke="#DC2626" stroke-width="2"/>
+<text x="602" y="560" font-size="14" text-anchor="middle" fill="#DC2626" font-weight="600">缓存誊本？</text>
+<path d="M 592 590 L 600 598 L 614 580" stroke="#16A34A" stroke-width="4" fill="none" stroke-linecap="round"/>
+<g transform="translate(787,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -78 Q -6 -86 8 -84 Q 14 -83 14 -77 L 12 -74 Q 4 -80 -10 -77 Z" fill="#1F2937"/><path d="M -7 -62 Q 0 -56 7 -62 Q 4 -58 0 -58 Q -4 -58 -7 -62 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#64748B" stroke="#1F2937" stroke-width="2"/><line x1="10" y1="-52" x2="16" y2="-36" stroke="#1F2937" stroke-width="2.4"/><line x1="-10" y1="-52" x2="-30" y2="-56" stroke="#1F2937" stroke-width="2.4"/><circle cx="-32" cy="-56" r="2.6" fill="#1F2937"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<rect x="677" y="438" width="220" height="48" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 677 456 L 665 466 L 677 470 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="787" y="460" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">缓存 = 过期工具表</text>
+<text x="787" y="476" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">的根源。</text>
+<text x="511" y="408" font-size="15" fill="#1F2937" font-weight="700">誊本随时撕掉重算</text></g>
+<clipPath id="pc3"><rect x="487" y="378" width="439" height="300" rx="10"/></clipPath>
+<text x="480" y="744" font-size="14.5" text-anchor="middle" fill="#1F2937" font-weight="700">日志是数据，视图是函数。</text>
+</svg>

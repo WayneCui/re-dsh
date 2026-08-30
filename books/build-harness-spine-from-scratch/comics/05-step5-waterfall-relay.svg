@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="760" viewBox="0 0 960 760" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+<rect width="960" height="760" fill="#FDF6EC"/>
+<text x="480" y="40" font-size="27" font-weight="800" text-anchor="middle" fill="#1F2937">Step 5 · 三棒接力</text>
+<line x1="34" y1="52" x2="926" y2="52" stroke="#1F2937" stroke-width="1.6"/>
+<rect x="34" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc0)">
+
+<rect x="74" y="144" width="110" height="56" rx="8" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2.4"/>
+<text x="129" y="166" font-size="13" text-anchor="middle" fill="#F59E0B" font-weight="600">pre 查证件</text>
+<text x="129" y="186" font-size="11" text-anchor="middle" fill="#9CA3AF" font-weight="600">可拒绝</text>
+<rect x="204" y="144" width="110" height="56" rx="8" fill="#FFFFFF" stroke="#16A34A" stroke-width="2.4"/>
+<text x="259" y="166" font-size="13" text-anchor="middle" fill="#16A34A" font-weight="600">execute 点火</text>
+<text x="259" y="186" font-size="11" text-anchor="middle" fill="#9CA3AF" font-weight="600">唯一副作用</text>
+<rect x="334" y="144" width="110" height="56" rx="8" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="2.4"/>
+<text x="389" y="166" font-size="13" text-anchor="middle" fill="#8B5CF6" font-weight="600">post 海关</text>
+<text x="389" y="186" font-size="11" text-anchor="middle" fill="#9CA3AF" font-weight="600">可改写</text>
+<path d="M 186 172 l 16 0 m -5 -5 l 5 5 l -5 5" stroke="#1F2937" stroke-width="2.2" fill="none"/><path d="M 316 172 l 16 0 m -5 -5 l 5 5 l -5 5" stroke="#1F2937" stroke-width="2.2" fill="none"/>
+<g transform="translate(254,336) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -74 Q -13 -89 0 -89 Q 13 -89 14 -74 Q 8 -80 0 -79 Q -8 -80 -14 -74 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="1.6"/><path d="M -15 -72 Q -17 -60 -12 -55 L -10 -62" fill="#F59E0B" stroke="#1F2937" stroke-width="1.4"/><circle cx="-5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><circle cx="5.5" cy="-71" r="4.4" fill="none" stroke="#1F2937" stroke-width="1.5"/><line x1="-1.2" y1="-71" x2="1.2" y2="-71" stroke="#1F2937" stroke-width="1.5"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#F59E0B" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="18" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-14" y2="-4" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="12" y2="-2" stroke="#1F2937" stroke-width="2.4"/></g>
+<text x="58" y="94" font-size="15" fill="#1F2937" font-weight="700">接力棒必须传下去（nw/call）</text></g>
+<clipPath id="pc0"><rect x="34" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="64" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc1)">
+<circle cx="697" cy="256" r="78" fill="none" stroke="#8B5CF6" stroke-width="3"/><circle cx="697" cy="256" r="52" fill="none" stroke="#16A34A" stroke-width="3"/><circle cx="697" cy="256" r="26" fill="none" stroke="#2563EB" stroke-width="3"/>
+<text x="697" y="260" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">本体</text>
+<text x="697" y="208" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">监听者可以包住每一层</text>
+<text x="511" y="94" font-size="15" fill="#1F2937" font-weight="700">waterfall 洋葱：内层是默认动作</text></g>
+<clipPath id="pc1"><rect x="487" y="64" width="439" height="300" rx="10"/></clipPath>
+<rect x="34" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc2)">
+<g transform="translate(134,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -76 Q -14 -88 0 -88 Q 14 -88 14 -76 Z" fill="#DC2626" stroke="#1F2937" stroke-width="1.6"/><rect x="-18" y="-80" width="36" height="6" rx="2.5" fill="#DC2626" stroke="#1F2937" stroke-width="1.4"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#DC2626" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-22" y2="-48" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="24" y2="-46" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="26" y1="-64" x2="26" y2="-8" stroke="#DC2626" stroke-width="6" stroke-linecap="round"/></g>
+<g transform="translate(234,650) scale(1)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -13 -76 L -11 -88 L -6 -80 L -2 -91 L 3 -81 L 8 -90 L 11 -79 L 14 -75 Q 6 -84 -6 -82 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#10B981" stroke="#1F2937" stroke-width="2"/><line x1="10" y1="-52" x2="16" y2="-36" stroke="#1F2937" stroke-width="2.4"/><line x1="-10" y1="-52" x2="-30" y2="-56" stroke="#1F2937" stroke-width="2.4"/><circle cx="-32" cy="-56" r="2.6" fill="#1F2937"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/></g>
+<rect x="259" y="434" width="200" height="48" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<path d="M 259 452 L 247 462 L 259 466 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="1.6"/>
+<text x="359" y="456" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">kind: 'deny —</text>
+<text x="359" y="472" font-size="13" text-anchor="middle" fill="#1F2937" font-weight="600">计数器停在 0。</text>
+<text x="94" y="528" font-size="13" text-anchor="start" fill="#2563EB" font-weight="600">PRE-DENY: calls=0</text>
+<text x="58" y="408" font-size="15" fill="#1F2937" font-weight="700">拒绝在点火之前</text></g>
+<clipPath id="pc2"><rect x="34" y="378" width="439" height="300" rx="10"/></clipPath>
+<rect x="487" y="378" width="439" height="300" rx="10" fill="#FFFFFF" stroke="#1F2937" stroke-width="2.6"/>
+<g clip-path="url(#pc3)">
+<g transform="translate(667,488) scale(1)">
+<path d="M 0 0 L 26 -16 L 26 16 Z" fill="#64748B" stroke="#1F2937" stroke-width="2"/>
+<rect x="-14" y="-6" width="14" height="12" fill="#1F2937"/>
+<path d="M 30 -12 q 6 4 12 0" stroke="#1F2937" stroke-width="1.6" fill="none"/>
+<path d="M 30 0 q 6 0 12 0" stroke="#1F2937" stroke-width="1.6" fill="none"/>
+<path d="M 30 12 q 6 -4 12 0" stroke="#1F2937" stroke-width="1.6" fill="none"/>
+</g>
+<text x="687" y="438" font-size="15" text-anchor="middle" fill="#2563EB" font-weight="600">tools-result</text>
+<text x="557" y="538" font-size="13" text-anchor="start" fill="#1F2937" font-weight="600">· unknown-tool 也广播</text><text x="557" y="568" font-size="13" text-anchor="start" fill="#1F2937" font-weight="600">· 拒绝也广播</text><text x="557" y="598" font-size="13" text-anchor="start" fill="#1F2937" font-weight="600">· 改写也广播</text>
+<g transform="translate(857,650) scale(0.9)"><circle cx="0" cy="-72" r="14" fill="#FFE8CC" stroke="#1F2937" stroke-width="2.2"/><path d="M -14 -76 Q -14 -88 0 -88 Q 14 -88 14 -76 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="1.6"/><rect x="-19" y="-78" width="38" height="4.5" rx="2" fill="#1F2937"/><path d="M -6 -65 Q 0 -69 6 -65 Q 0 -63 -6 -65 Z" fill="#1F2937"/><path d="M -10 -58 L 10 -58 L 12 -26 L -12 -26 Z" fill="#1E3A8A" stroke="#1F2937" stroke-width="2"/><line x1="-10" y1="-52" x2="-14" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="10" y1="-52" x2="14" y2="-38" stroke="#1F2937" stroke-width="2.4"/><line x1="-5" y1="-26" x2="-7" y2="0" stroke="#1F2937" stroke-width="2.4"/><line x1="5" y1="-26" x2="7" y2="0" stroke="#1F2937" stroke-width="2.4"/><path d="M -22 -40 Q 0 -48 0 -40 Q 0 -48 22 -40 L 22 -10 Q 0 -16 -22 -10 Z" fill="#FEF3C7" stroke="#1F2937" stroke-width="2"/>
+<line x1="0" y1="-40" x2="0" y2="-10" stroke="#1F2937" stroke-width="1.6"/>
+<line x1="-17" y1="-27" x2="-6" y2="-27" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-27" x2="17" y2="-27" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="-17" y1="-20" x2="-6" y2="-20" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-20" x2="17" y2="-20" stroke="#9CA3AF" stroke-width="1.2"/>
+<line x1="-17" y1="-13" x2="-6" y2="-13" stroke="#9CA3AF" stroke-width="1.2"/><line x1="6" y1="-13" x2="17" y2="-13" stroke="#9CA3AF" stroke-width="1.2"/></g>
+<text x="511" y="408" font-size="15" fill="#1F2937" font-weight="700">定格广播：没有一声不响的 none</text></g>
+<clipPath id="pc3"><rect x="487" y="378" width="439" height="300" rx="10"/></clipPath>
+<text x="480" y="744" font-size="14.5" text-anchor="middle" fill="#1F2937" font-weight="700">工具是有证人的公共行为；特权在结构里，不在名单上。</text>
+</svg>
