@@ -1,7 +1,7 @@
 REBOL []
 
 ; ============================================================
-; scope/api.reb — opaque scope keys for per-agent event routing.
+; scope/api.reb ï¿½ opaque scope keys for per-agent event routing.
 ;
 ; Mirrors dsh-scope minimally: mint key, parent chain, scopeTarget filter.
 ; ============================================================
@@ -69,12 +69,14 @@ attach-scope-ctx: func [ctx [object!] key [object!]] [
     none
 ]
 
-scope-ctx-parent: func [ctx [object! none!] /local fb parent] [
+scope-ctx-parent: func [ctx [object! none!] /local fb parent pctx] [
     unless object? ctx [return none]
     fb: ctx/fiber
     unless object? fb [return none]
     parent: fb/parent
     unless object? parent [return none]
+    ; Root fiber's parent is the context itself -- stop (else scope-of loops forever).
+    if same? parent ctx [return none]
     if select parent 'ctx-marker [return parent]
     pctx: select parent 'ctx
     if object? pctx [return pctx]

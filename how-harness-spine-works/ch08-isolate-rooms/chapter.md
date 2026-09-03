@@ -8,7 +8,7 @@ harness-spine splits the world the way Architecture states it: each agent is `is
 
 The lab spawns A and B, registers a `whoami` spec on each with a closed-over id, and executes. A returns `"A"`, B returns `"B"`. That is not namespacing inside one map. It is two `tools` services, each with its own `registry`. `shell` is likewise isolated, so bash on A is not a way to sneak a spec onto B.
 
-Events follow the key, not the process. `execute` emits `tools-result` with `make-scope-target scope-of ctx`. `scope-admits?` walks from the dispatch key up the parent chain; a listener whose `scope-of` is B does not admit A's dispatch. The lab attaches listeners on each isolate ctx: A hears A, B does not, and the reverse. A parent key is the exception that is a feature. The lab mints `parent`, spawns `child` with `/parent`, attaches that key on the *root* ctx, and the root listener hears the child's `tools-result`. Sub-agents can report upward. Siblings cannot peek sideways.
+Events follow the key, not the process. `execute` emits `tools-result` with `make-scope-target scope-of ctx`. `scope-admits?` walks from the dispatch key up the parent chain; a listener whose `scope-of` is B does not admit A's dispatch. A listener whose `scope-of` is `none` admits everyone — silence is not the default. The lab attaches listeners on each isolate ctx: A hears A, B does not, and the reverse. A parent key is the exception that is a feature. The lab mints `parent`, spawns `child` with `/parent`, attaches that key on the *root* ctx, and the root listener hears the child's `tools-result`. Sub-agents can report upward. Siblings cannot peek sideways.
 
 Session is the shared front desk. A and B each `run-turn` on the same session id. Four derived messages: from A, echo, from B, echo. The notebook does not fork just because the speaker changed. If you *want* isolation of memory, you `sessions/create` twice or `fork`. The spine will not invent a second log per isolate; that would make "two agents, one thread" impossible.
 
@@ -50,7 +50,7 @@ LAB-OK
 ### Try this
 
 1. Register `whoami` only on A, then `agent-b/tools/execute 'whoami`. You should get `unknown-tool`. Isolation is not a prefix; the spec is absent.
-2. Remove `attach-scope-ctx spine/ctx parent-key` and rerun the parent listener. `PARENT-HEARD-CHILD` should become `#(false)` because `scope-of` on the root would no longer match the child's dispatch chain.
+2. Comment out `attach-scope-ctx spine/ctx parent-key` and rerun. `PARENT-HEARD-CHILD` stays `#(true)`: a listener whose `scope-of` is `none` admits every dispatch (see `make-scope-filter-obj`). To silence the root, attach a *stranger* key instead — `attach-scope-ctx spine/ctx mint-scope-key "stranger"` — then `PARENT-HEARD-CHILD` becomes `#(false)`, because that key is not on the child's parent chain.
 3. Print `agent-a/ctx` versus `spine/ctx` and confirm they are not `same?`. Then `reflect/get 'sessions` on both: session still resolves from the parent chain; tools should not.
 
 ### Against the source

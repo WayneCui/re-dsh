@@ -547,7 +547,7 @@ harness-spine 按架构文档写明的方式切开世界：每个智能体是 `i
 
 实验拉起 A 和 B，各自登记一份闭包住 id 的 `whoami` 规格，然后执行：A 返回 `"A"`，B 返回 `"B"`。这不是在同一张 map 里做命名空间，而是两份 `tools` 服务、各有各的 `registry`。`shell` 同样被隔离，所以 A 上的 bash 也不是把规格偷塞给 B 的路子。
 
-事件跟着钥匙走，不跟着进程走。`execute` 发出 `tools-result` 时带着 `make-scope-target scope-of ctx`；`scope-admits?` 从派发钥匙沿父链往上走——监听者的 `scope-of` 若是 B，就不接纳 A 的派发。实验在每个 isolate 的 ctx 上挂监听：A 听得见 A，B 听不见，反过来也一样。父钥匙是那个「算功能、不算漏洞」的例外：实验铸出 `parent`，用 `/parent` 拉起 `child`，把那把钥匙挂到*根* ctx 上，于是根上的监听者听见了孩子的 `tools-result`。子智能体可以向上汇报，兄弟姐妹不能横着偷听。
+事件跟着钥匙走，不跟着进程走。`execute` 发出 `tools-result` 时带着 `make-scope-target scope-of ctx`；`scope-admits?` 从派发钥匙沿父链往上走——监听者的 `scope-of` 若是 B，就不接纳 A 的派发。监听者的 `scope-of` 若是 `none`，则放行一切——静音不是默认。实验在每个 isolate 的 ctx 上挂监听：A 听得见 A，B 听不见，反过来也一样。父钥匙是那个「算功能、不算漏洞」的例外：实验铸出 `parent`，用 `/parent` 拉起 `child`，把那把钥匙挂到*根* ctx 上，于是根上的监听者听见了孩子的 `tools-result`。子智能体可以向上汇报，兄弟姐妹不能横着偷听。
 
 Session 是共享的前台。A 和 B 在同一个 session id 上各跑一次 `run-turn`，派生出四条消息：来自 A、echo、来自 B、echo。说话的人换了，笔记本并不因此 fork。若你*要*记忆上的隔离，就 `sessions/create` 两次，或者 `fork`。脊柱不会给每间 isolate 凭空再造一本日志——那样的话，「两个智能体，一条线」就做不成了。
 
@@ -589,7 +589,7 @@ LAB-OK
 ### 试一试
 
 1. 只在 A 上登记 `whoami`，然后 `agent-b/tools/execute 'whoami`。你应得到 `unknown-tool`。隔离不是前缀；规格根本不在。
-2. 去掉 `attach-scope-ctx spine/ctx parent-key`，再跑父级监听。`PARENT-HEARD-CHILD` 应变为 `#(false)`，因为根上的 `scope-of` 不再匹配孩子的派发链。
+2. 注释掉 `attach-scope-ctx spine/ctx parent-key` 再跑。`PARENT-HEARD-CHILD` 仍是 `#(true)`：监听者的 `scope-of` 为 `none` 时，过滤器放行一切派发（见 `make-scope-filter-obj`）。若要让根听不见，改挂一把*无关*钥匙——`attach-scope-ctx spine/ctx mint-scope-key "stranger"`——这时 `PARENT-HEARD-CHILD` 才变成 `#(false)`，因为那把钥匙不在孩子的父链上。
 3. 打印 `agent-a/ctx` 对比 `spine/ctx`，确认它们不是 `same?`。然后两边都 `reflect/get 'sessions`：session 仍从父链解析；tools 则不该。
 
 ### 对照真源

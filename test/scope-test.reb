@@ -70,6 +70,26 @@ child-agent/tools/execute 'whoami make map! []
 assert parent-seen "parent scope hears child tools-result"
 p-disp/dispose
 
+; ---- no scope on root: filter admits everyone (not "silence") ----
+put spine/ctx/extra 'scope-key-ref none
+assert none? scope-of spine/ctx "root scope cleared without hanging"
+bare-seen: false
+bare-listener: func [args [block!]] [bare-seen: true]
+bare-disp: spine/ctx/events/on 'tools-result 'bare-listener none spine/ctx
+child-agent/tools/execute 'whoami make map! []
+assert bare-seen "listener with no scope hears child"
+bare-disp/dispose
+
+; ---- stranger key on root: not on child's parent chain ----
+stranger: mint-scope-key "stranger"
+attach-scope-ctx spine/ctx stranger
+stranger-seen: false
+stranger-listener: func [args [block!]] [stranger-seen: true]
+s-disp: spine/ctx/events/on 'tools-result 'stranger-listener none spine/ctx
+child-agent/tools/execute 'whoami make map! []
+assert equal? false stranger-seen "stranger scope ignores child"
+s-disp/dispose
+
 release-agent-handle agent-a
 release-agent-handle agent-b
 release-agent-handle child-agent
